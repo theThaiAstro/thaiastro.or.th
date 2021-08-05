@@ -1,0 +1,43 @@
+@import 'typography';
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $thin;
+	src: url('../assets/fonts/Anuphan-Thin.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $extraLight;
+	src: url('../assets/fonts/Anuphan-ExtraLight.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $light;
+	src: url('../assets/fonts/Anuphan-Light.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $normal;
+	src: url('../assets/fonts/Anuphan-Regular.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $medium;
+	src: url('../assets/fonts/Anuphan-Medium.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $semibold;
+	src: url('../assets/fonts/Anuphan-SemiBold.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Anuphan;
+	font-weight: $bold;
+	src: url('../assets/fonts/Anuphan-Bold.otf') format('opentype');
+}
