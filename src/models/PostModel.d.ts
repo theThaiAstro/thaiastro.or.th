@@ -1,4 +1,8 @@
 export interface PostModel {
 	body: string;
-	frontmatter: string;
+	frontmatter: Frontmatter;
+}
+
+interface Frontmatter {
+	title: string;
 }

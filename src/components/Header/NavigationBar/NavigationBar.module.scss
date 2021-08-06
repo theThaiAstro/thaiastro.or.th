@@ -1,0 +1,19 @@
+@import 'node_modules/include-media/dist/include-media';
+
+#NavigationBar {
+	background: var(--grey-900);
+	height: 3.5rem;
+	width: 100%;
+}
+
+#NavigationBarLogoContainer {
+	background: var(--primary-500);
+	position: relative;
+	padding: 0.75rem;
+	height: 4.5rem;
+	width: 4.5rem;
+
+	@include media('>=tablet') {
+		left: 16rem;
+	}
+}

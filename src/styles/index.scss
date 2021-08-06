@@ -1,5 +1,42 @@
 @import 'typography';
 
+:root {
+	font-size: 100%;
+
+	// Colours Definitions
+	--grey-100: hsl(0, 0%, 98%);
+	--grey-300: hsl(0, 0%, 76%);
+	--grey-500: hsl(0, 0%, 45%);
+	--grey-700: hsl(0, 0%, 14%);
+	--grey-900: hsl(0, 0%, 1%);
+
+	--blue-100: hsl(229, 59%, 48%);
+	--blue-300: hsl(230, 76%, 41%);
+	--blue-500: hsl(230, 78%, 32%);
+	--blue-700: hsl(229, 81%, 25%);
+	--blue-900: hsl(228, 85%, 18%);
+
+	--yellow-100: hsl(52, 100%, 72%);
+	--yellow-300: hsl(52, 89%, 61%);
+	--yellow-500: hsl(52, 86%, 49%);
+	--yellow-700: hsl(52, 93%, 37%);
+	--yellow-900: hsl(52, 100%, 28%);
+
+	--red-100: hsl(7, 82%, 55%);
+	--red-300: hsl(7, 82%, 53%);
+	--red-500: hsl(7, 74%, 46%);
+	--red-700: hsl(7, 76%, 36%);
+	--red-900: hsl(8, 79%, 27%);
+
+	// Variablised Colours
+
+	--primary-100: var(--blue-100);
+	--primary-300: var(--blue-300);
+	--primary-500: var(--blue-500);
+	--primary-700: var(--blue-700);
+	--primary-900: var(--blue-900);
+}
+
 *,
 *:before,
 *:after {

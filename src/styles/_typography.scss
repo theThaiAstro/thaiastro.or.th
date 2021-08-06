@@ -3,7 +3,60 @@ $extraLight: 200;
 $light: 300;
 $normal: 400;
 $medium: 500;
-$semibold: 600;
+$semiBold: 600;
 $bold: 700;
 
+$font--XS: 0.5rem;
+$font--S: 0.75rem;
+$font--M: 1rem;
+$font--L: 1.5rem;
+$font--XL: 2rem;
+
 $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', Helvetica, Arial, sans-serif;
+
+%heading {
+	font-family: $font--headings;
+}
+
+%heading-1 {
+	@extend %heading;
+	font-size: $font--XL;
+	font-weight: $semiBold;
+}
+
+%heading-2 {
+	@extend %heading;
+	font-size: $font--L;
+	font-weight: $semiBold;
+}
+
+%heading-3 {
+	@extend %heading;
+	font-size: $font--M;
+	font-weight: $medium;
+}
+
+%subHeading {
+	@extend %heading;
+	font-size: $font--S;
+	font-weight: $medium;
+}
+
+%text {
+	// TODO: Use %text
+	@extend %heading;
+	font-size: $font--L;
+	font-weight: $normal;
+}
+
+%text-small--mobile {
+	@extend %heading;
+	font-size: $font--XS;
+	font-weight: $normal;
+}
+
+%text-small--desktop {
+	@extend %heading;
+	font-size: $font--S;
+	font-weight: $normal;
+}

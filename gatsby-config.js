@@ -6,7 +6,9 @@ module.exports = {
 		title: 'The Thai Astronomical Society',
 	},
 	plugins: [
+		'gatsby-plugin-image',
 		'gatsby-plugin-sass',
+		'gatsby-plugin-sharp',
 		{
 			resolve: `gatsby-plugin-mdx`,
 			options: {

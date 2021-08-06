@@ -1,1 +1,5 @@
-@import '../../styles/typography';
+@use '../../styles/typography';
+
+h1.Typography {
+	@extend %heading-1;
+}
