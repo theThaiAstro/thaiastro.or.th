@@ -1,0 +1,13 @@
+@use '../../styles/colours';
+@use '../../styles/typography';
+@use '../../styles/sizes';
+
+.Badge {
+	@extend %text-badge;
+
+	background: colours.$primary-500;
+	border-radius: sizes.$XXS;
+	color: colours.$grey-100;
+	display: inline-block;
+	padding: sizes.$XXS sizes.$M;
+}

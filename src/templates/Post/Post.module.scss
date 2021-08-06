@@ -1,0 +1,27 @@
+@use '../../styles/sizes';
+
+.GenericBlock {
+	padding: sizes.$XL sizes.$M;
+	max-width: 42rem;
+	width: 100%;
+
+	&.Metadata {
+		padding-bottom: 0;
+	}
+
+	&.Content {
+		padding-top: sizes.$L;
+	}
+}
+
+.Author {
+	margin-top: sizes.$S;
+}
+
+.Categories {
+	margin-top: sizes.$M;
+}
+
+h1.Title {
+	margin-top: sizes.$S;
+}
