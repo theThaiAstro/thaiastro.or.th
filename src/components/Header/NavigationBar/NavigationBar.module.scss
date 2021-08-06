@@ -3,6 +3,7 @@
 #NavigationBar {
 	background: var(--grey-900);
 	height: 3.5rem;
+	margin-bottom: 1rem;
 	width: 100%;
 }
 
@@ -16,4 +17,8 @@
 	@include media('>=tablet') {
 		left: 16rem;
 	}
+}
+
+#NavigationBar.NoDefaultMargin {
+	margin-bottom: 0;
 }

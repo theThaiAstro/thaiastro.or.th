@@ -1,11 +1,13 @@
 import React from 'react';
-import NavigationBar from './NavigationBar/NavigationBar';
+import NavigationBar, { NavigationBarProps } from './NavigationBar/NavigationBar';
 
 import * as styles from './Header.module.scss';
 
-const Header = () => (
+type Props = NavigationBarProps;
+
+const Header: React.FC<Props> = ({ noDefaultMargin }) => (
 	<header id={styles.SiteHeader}>
-		<NavigationBar />
+		<NavigationBar noDefaultMargin={noDefaultMargin} />
 	</header>
 );
 

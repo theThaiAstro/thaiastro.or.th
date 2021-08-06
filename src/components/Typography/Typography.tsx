@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 import * as styles from './Typography.module.scss';
 
@@ -9,32 +10,56 @@ type Heading = {
 
 type Text = {
 	type: 'text';
-	level: never;
+	useDiv?: boolean;
+	variant?: 'small';
 };
 
 type ReactProps = {
 	children: string;
 };
 
-type Props = Heading | Text;
+type OwnProps = {
+	className?: string;
+};
 
-const Typography: React.FC<Props & ReactProps> = ({ type, level, children }) => {
+type Props = (Heading | Text) & ReactProps & OwnProps;
+
+const Typography: React.FC<Props> = (props) => {
+	const { children } = props;
+
 	// prettier-ignore
-	switch (type) {
-		case 'heading': return getHeading(level, children);
-		case 'text': return <span>{children}</span>;
+	switch (props.type) {
+		case 'heading': return getHeading(props.level, children);
+		case 'text': return getText(children, props.variant, props.useDiv);
 		default: return <>{children}</>;
 	}
 
 	// prettier-ignore
 	function getHeading(level: Heading['level'], children: string) {
+		const elementClass = cx(styles.Typography, props.className);
+
 		switch (level) {
-			case 1: return <h1 className={styles.Typography}>{children}</h1>;
-			case 2: return <h2 className={styles.Typography}>{children}</h2>;
-			case 3: return <h3 className={styles.Typography}>{children}</h3>;
-			case 4: return <h4 className={styles.Typography}>{children}</h4>;
-			case 5: return <h5 className={styles.Typography}>{children}</h5>;
-			case 6: return <h6 className={styles.Typography}>{children}</h6>;
+			case 1: return <h1 className={elementClass}>{children}</h1>;
+			case 2: return <h2 className={elementClass}>{children}</h2>;
+			case 3: return <h3 className={elementClass}>{children}</h3>;
+			case 4: return <h4 className={elementClass}>{children}</h4>;
+			case 5: return <h5 className={elementClass}>{children}</h5>;
+			case 6: return <h6 className={elementClass}>{children}</h6>;
+		}
+	}
+
+	function getText(children: string, variant?: Text['variant'], useDiv?: boolean) {
+		const elementClass = cx(styles.Typography, getVariant(variant), props.className);
+
+		if (useDiv) return <div className={elementClass}>{children}</div>;
+		else return <span className={elementClass}>{children}</span>;
+
+		function getVariant(variant?: Text['variant']) {
+			// prettier-ignore
+			switch (variant) {
+				case 'small': return styles.VariantSmall;
+				default: return;
+			}
 		}
 	}
 };

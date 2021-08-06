@@ -1,10 +1,16 @@
 import React from 'react';
+import cx from 'classnames';
 import { graphql } from 'gatsby';
 
 import MDX from '../../components/MDX/MDX';
 import { PostModel } from '../../models/PostModel';
 import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
 import Typography from '../../components/Typography/Typography';
+import Badge from '../../components/Badge/Badge';
+
+import * as styles from './Post.module.scss';
+import { DotSeparator } from '../../constants/Separator';
+import { formatDate } from '../../utils/dateUtils';
 
 interface Props {
 	data: {
@@ -16,13 +22,41 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 	const { mdx } = data;
 	const { frontmatter } = mdx;
 
-	return (
-		<GlobalLayout>
-			<Typography type="heading" level={1}>
+	const GenericBlock: React.FC<{ className?: string }> = ({ className, children }) => (
+		<section className={cx(styles.GenericBlock, className)}>{children}</section>
+	);
+
+	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.author ?? ''}`;
+
+	const metadata = (
+		<GenericBlock className={styles.Metadata}>
+			<Badge text="บทความ" />
+			<Typography type="text" variant="small" useDiv className={styles.Categories}>
+				{frontmatter.categories?.join(', ') ?? ''}
+			</Typography>
+			<Typography type="heading" level={1} className={styles.Title}>
 				{frontmatter.title}
 			</Typography>
+			<Typography type="text" variant="small" useDiv className={styles.Author}>
+				{AuthorDate}
+			</Typography>
+		</GenericBlock>
+	);
+
+	const content = (
+		<GenericBlock className={styles.Content}>
 			<MDX withRenderer>{mdx.body}</MDX>
-			<div style={{ height: 2000 }}></div>
+		</GenericBlock>
+	);
+
+	return (
+		<GlobalLayout>
+			<main style={{ display: 'flex', justifyContent: 'center' }}>
+				<article>
+					{metadata}
+					{content}
+				</article>
+			</main>
 		</GlobalLayout>
 	);
 };
@@ -32,6 +66,9 @@ export const PostQuery = graphql`
 		mdx(id: { eq: $id }) {
 			body
 			frontmatter {
+				author
+				categories
+				date
 				title
 			}
 		}

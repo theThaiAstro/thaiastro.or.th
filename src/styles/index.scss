@@ -3,6 +3,15 @@
 :root {
 	font-size: 100%;
 
+	// Sizes
+	--XXXS: 0.125rem;
+	--XXS: 0.25rem;
+	--XS: 0.5rem;
+	--S: 0.75rem;
+	--M: 1rem;
+	--L: 1.5rem;
+	--XL: 2rem;
+
 	// Colours Definitions
 	--grey-100: hsl(0, 0%, 98%);
 	--grey-300: hsl(0, 0%, 76%);
@@ -29,7 +38,6 @@
 	--red-900: hsl(8, 79%, 27%);
 
 	// Variablised Colours
-
 	--primary-100: var(--blue-100);
 	--primary-300: var(--blue-300);
 	--primary-500: var(--blue-500);
@@ -46,5 +54,4 @@
 html,
 body {
 	margin: 0;
-	font-family: $font--headings;
 }

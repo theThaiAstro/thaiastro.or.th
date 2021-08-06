@@ -4,5 +4,8 @@ export interface PostModel {
 }
 
 interface Frontmatter {
+	author?: string;
+	categories?: string[];
+	date: string;
 	title: string;
 }

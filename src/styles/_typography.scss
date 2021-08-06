@@ -1,3 +1,5 @@
+@use 'sizes';
+
 $thin: 100;
 $extraLight: 200;
 $light: 300;
@@ -6,11 +8,11 @@ $medium: 500;
 $semiBold: 600;
 $bold: 700;
 
-$font--XS: 0.5rem;
-$font--S: 0.75rem;
-$font--M: 1rem;
-$font--L: 1.5rem;
-$font--XL: 2rem;
+$font--XS: sizes.$XS;
+$font--S: sizes.$S;
+$font--M: sizes.$M;
+$font--L: sizes.$L;
+$font--XL: sizes.$XL;
 
 $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', Helvetica, Arial, sans-serif;
 
@@ -22,6 +24,7 @@ $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', 
 	@extend %heading;
 	font-size: $font--XL;
 	font-weight: $semiBold;
+	margin: 0;
 }
 
 %heading-2 {
@@ -45,18 +48,22 @@ $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', 
 %text {
 	// TODO: Use %text
 	@extend %heading;
-	font-size: $font--L;
+	font-size: $font--M;
 	font-weight: $normal;
 }
 
-%text-small--mobile {
-	@extend %heading;
-	font-size: $font--XS;
-	font-weight: $normal;
+%text-badge {
+	@extend %heading-3;
 }
 
-%text-small--desktop {
+%text-small--S {
 	@extend %heading;
 	font-size: $font--S;
+	font-weight: $normal;
+}
+
+%text-small--XS {
+	@extend %heading;
+	font-size: $font--XS;
 	font-weight: $normal;
 }
