@@ -13,11 +13,17 @@ $font--S: sizes.$S;
 $font--M: sizes.$M;
 $font--L: sizes.$L;
 $font--XL: sizes.$XL;
+$font--XXL: sizes.$XXL;
 
 $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', Helvetica, Arial, sans-serif;
+$font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 
 %heading {
 	font-family: $font--headings;
+}
+
+%text {
+	font-family: $font--text;
 }
 
 %heading-1 {
@@ -45,11 +51,13 @@ $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', 
 	font-weight: $medium;
 }
 
-%text {
-	// TODO: Use %text
-	@extend %heading;
-	font-size: $font--M;
+%text-normal {
+	@extend %text;
+	// Desktop @1.25rem
+	font-size: $font--L;
 	font-weight: $normal;
+	letter-spacing: 0.01em;
+	line-height: 160%;
 }
 
 %text-badge {

@@ -1,0 +1,41 @@
+@import 'typography';
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $normal;
+	src: url('../assets/fonts/Prajad/CSPraJad.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $bold;
+	src: url('../assets/fonts/Prajad/CSPraJad-bold.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $normal;
+	font-style: italic;
+	src: url('../assets/fonts/Prajad/CSPraJad-Italic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $bold;
+	font-style: italic;
+	src: url('../assets/fonts/Prajad/CSPraJad-boldItalic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $normal;
+	font-style: oblique;
+	src: url('../assets/fonts/Prajad/CSPraJad-Italic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Prajad;
+	font-weight: $bold;
+	font-style: oblique;
+	src: url('../assets/fonts/Prajad/CSPraJad-boldItalic.otf') format('opentype');
+}
