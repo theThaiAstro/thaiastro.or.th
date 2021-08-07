@@ -21,8 +21,9 @@
 	}
 
 	&.Content {
-		// Why?
-		padding-top: sizes.$XL;
+		p {
+			@extend %text-normal;
+		}
 	}
 
 	&.Extra {
@@ -50,8 +51,4 @@
 
 h1.Title {
 	margin-top: sizes.$XL;
-}
-
-p {
-	@extend %text-normal;
 }
