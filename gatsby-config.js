@@ -1,4 +1,4 @@
-const { ARTICLES, NEWS } = require('./src/constants/SourceInstance');
+const { ARTICLES, NEWS, IMAGES } = require('./src/constants/SourceInstance');
 
 module.exports = {
 	siteMetadata: {
@@ -9,10 +9,11 @@ module.exports = {
 		'gatsby-plugin-image',
 		'gatsby-plugin-sass',
 		'gatsby-plugin-sharp',
+		'gatsby-transformer-sharp',
 		{
-			resolve: `gatsby-plugin-mdx`,
+			resolve: 'gatsby-plugin-mdx',
 			options: {
-				extensions: [`.mdx`, `.md`],
+				extensions: ['.mdx', '.md'],
 			},
 		},
 		{
@@ -27,6 +28,13 @@ module.exports = {
 			options: {
 				name: NEWS,
 				path: `${__dirname}/src/content/${NEWS}`,
+			},
+		},
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				name: IMAGES,
+				path: `${__dirname}/src/content/${IMAGES}`,
 			},
 		},
 	],

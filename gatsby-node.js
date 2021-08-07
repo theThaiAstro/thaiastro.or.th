@@ -34,6 +34,53 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 	});
 };
 
+exports.createSchemaCustomization = ({ actions, schema }) => {
+	const { createFieldExtension, createTypes, printTypeDefinitions } = actions;
+
+	createFieldExtension({
+		name: 'fileByImagesPath',
+		extend: () => ({
+			resolve: (src, args, context, info) => {
+				const partialPath = src.featuredImage;
+				if (!partialPath) return null;
+
+				const filePath = path.join(__dirname, 'src/content/images', partialPath);
+				const fileNode = context.nodeModel.runQuery({
+					firstOnly: true,
+					type: 'File',
+					query: {
+						filter: {
+							absolutePath: {
+								eq: filePath,
+							},
+						},
+					},
+				});
+
+				return fileNode || null;
+			},
+		}),
+	});
+
+	createTypes(`
+		type Mdx implements Node {
+			frontmatter: Frontmatter
+		}
+
+		type Frontmatter @dontInfer {
+			title: String!
+			date: Date
+			categories: [String!]
+			tags: [String!]
+			author: [String!]
+			featuredImage: File @fileByImagesPath
+			isFeatured: Boolean
+			isUnpublished: Boolean
+			slug: String
+		}
+	`);
+};
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions;
 
