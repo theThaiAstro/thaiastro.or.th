@@ -11,6 +11,7 @@ import Badge from '../../components/Badge/Badge';
 import * as styles from './Post.module.scss';
 import { DotSeparator } from '../../constants/Separator';
 import { formatDate } from '../../utils/dateUtils';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 interface Props {
 	data: {
@@ -21,6 +22,7 @@ interface Props {
 const PostTemplate: React.FC<Props> = ({ data }) => {
 	const { mdx } = data;
 	const { frontmatter } = mdx;
+	const featuredImage = getImage(frontmatter.featuredImage);
 
 	const GenericBlock: React.FC<{ className?: string }> = ({ className, children }) => (
 		<section className={cx(styles.GenericBlock, className)}>{children}</section>
@@ -32,7 +34,7 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 		const Categories = () => (
 			<ul className={cx('List--OneLine', styles.Categories)}>
 				{frontmatter.categories!.map((c) => (
-					<li>
+					<li key={c}>
 						<Typography type="text" variant="extra">
 							{c}
 						</Typography>
@@ -64,10 +66,10 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 	const Extra = () => {
 		const Tags = () => (
 			<ul className={cx('List--OneLine', styles.Tags)}>
-				{frontmatter.tags!.map((c) => (
-					<li>
+				{frontmatter.tags!.map((t) => (
+					<li key={t}>
 						<Typography type="text" variant="extra">
-							{c}
+							{t}
 						</Typography>
 					</li>
 				))}
@@ -79,9 +81,12 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 
 	return (
 		<GlobalLayout>
-			<main style={{ display: 'flex', justifyContent: 'center', marginBottom: '16rem' }}>
+			<main className={styles.MainContent}>
 				<article>
 					<Metadata />
+					{featuredImage && (
+						<GatsbyImage className={styles.FeaturedImage} image={featuredImage} alt={frontmatter.title} />
+					)}
 					{content}
 					<Extra />
 				</article>
@@ -100,6 +105,11 @@ export const PostQuery = graphql`
 				date
 				tags
 				title
+				featuredImage {
+					childImageSharp {
+						gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+					}
+				}
 			}
 		}
 	}

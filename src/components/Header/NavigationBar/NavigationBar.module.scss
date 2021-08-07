@@ -1,24 +1,27 @@
+@use '../../../styles/sizes';
 @import 'node_modules/include-media/dist/include-media';
 
 #NavigationBar {
 	background: var(--grey-900);
+	display: flex;
 	height: 3.5rem;
+	justify-content: center;
 	margin-bottom: 1rem;
 	width: 100%;
 }
 
+#NavigationBar.NoDefaultMargin {
+	margin-bottom: 0;
+}
+
 #NavigationBarLogoContainer {
 	background: var(--primary-500);
-	position: relative;
 	padding: 0.75rem;
 	height: 4.5rem;
 	width: 4.5rem;
-
-	@include media('>=tablet') {
-		left: 16rem;
-	}
 }
 
-#NavigationBar.NoDefaultMargin {
-	margin-bottom: 0;
+#LogoJustifier {
+	max-width: sizes.$maxSize;
+	width: 100%;
 }

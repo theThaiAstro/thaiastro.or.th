@@ -1,3 +1,5 @@
+$maxSize: var(--size-max);
+
 $XXXS: var(--XXXS); // 2
 $XXS: var(--XXS); // 4
 $XS: var(--XS); // 8
@@ -9,6 +11,8 @@ $XXL: var(--XXL); // 32
 $XXXL: var(--XXXL); // 40
 $XXXXL: var(--XXXXL); // 48
 $XXXXXL: var(--XXXXXL); // 64
+$XXXXXXL: var(--XXXXXXL); // 128
+$XXXXXXXL: var(--XXXXXXXL); // 256
 
 $XXXS--em: var(--XXXS--em); // 2
 $XXS--em: var(--XXS--em); // 4
@@ -18,6 +22,8 @@ $M--em: var(--M--em); // 16
 $L--em: var(--L--em); // 20
 $XL--em: var(--XL--em); // 24
 $XXL--em: var(--XXL--em); // 32
-$XXXL--em: var(--XXXL--em); // 32
-$XXXXL--em: var(--XXXXL--em); // 32
-$XXXXXL--em: var(--XXXXXL--em); // 32
+$XXXL--em: var(--XXXL--em); // 40
+$XXXXL--em: var(--XXXXL--em); // 48
+$XXXXXL--em: var(--XXXXXL--em); // 64
+$XXXXXXL--em: var(--XXXXXXL--em); // 128
+$XXXXXXXL--em: var(--XXXXXXXL--em); // 256

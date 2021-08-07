@@ -8,6 +8,8 @@
 	font-size: 100%;
 
 	// Sizes
+	--size-max: 64rem;
+
 	--XXXS: 0.125rem;
 	--XXS: 0.25rem;
 	--XS: 0.5rem;
@@ -19,6 +21,8 @@
 	--XXXL: 2.5rem;
 	--XXXXL: 3rem;
 	--XXXXXL: 4rem;
+	--XXXXXXL: 8rem;
+	--XXXXXXXL: 16rem;
 
 	--XXXS--em: 0.125em;
 	--XXS--em: 0.25em;
@@ -31,6 +35,8 @@
 	--XXXL--em: 2.5em;
 	--XXXXL--em: 3em;
 	--XXXXXL--em: 4em;
+	--XXXXXXL--em: 8em;
+	--XXXXXXXL--em: 16em;
 
 	// Colours Definitions
 	--grey-100: hsl(0, 0%, 98%);

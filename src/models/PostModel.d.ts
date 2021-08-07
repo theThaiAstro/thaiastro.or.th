@@ -9,4 +9,5 @@ interface Frontmatter {
 	date: string;
 	tags?: string[];
 	title: string;
+	featuredImage: any;
 }

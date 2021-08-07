@@ -3,9 +3,13 @@
 @import '~include-media/dist/include-media';
 
 .GenericBlock {
-	padding: sizes.$XL sizes.$M;
-	max-width: 42rem;
+	padding: sizes.$XL sizes.$XXXXXXL;
+	max-width: sizes.$maxSize;
 	width: 100%;
+
+	@include media('<tablet') {
+		padding: sizes.$XL sizes.$M;
+	}
 
 	&.Metadata {
 		padding-bottom: 0;
@@ -18,7 +22,7 @@
 
 	&.Content {
 		// Why?
-		// padding-top: sizes.$XL;
+		padding-top: sizes.$XL;
 	}
 
 	&.Extra {
@@ -32,6 +36,16 @@
 
 .Categories {
 	margin-top: sizes.$M;
+}
+
+.FeaturedImage {
+	margin-top: sizes.$XXL;
+}
+
+.MainContent {
+	display: flex;
+	justify-content: center;
+	margin-bottom: sizes.$XXXXXXXL;
 }
 
 h1.Title {

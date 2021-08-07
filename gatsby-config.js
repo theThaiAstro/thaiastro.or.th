@@ -8,8 +8,17 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-image',
 		'gatsby-plugin-sass',
-		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
+		{
+			resolve: 'gatsby-plugin-sharp',
+			options: {
+				defaults: {
+					quality: 100,
+					formats: ['auto', 'webp', 'avif'],
+					placeholder: 'blurred',
+				},
+			},
+		},
 		{
 			resolve: 'gatsby-plugin-mdx',
 			options: {
