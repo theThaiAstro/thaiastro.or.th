@@ -7,5 +7,6 @@ interface Frontmatter {
 	author?: string;
 	categories?: string[];
 	date: string;
+	tags?: string[];
 	title: string;
 }

@@ -2,6 +2,7 @@
 
 @import 'font-anuphan.scss';
 @import 'font-prajad.scss';
+@import 'lists.scss';
 
 :root {
 	font-size: 100%;
@@ -15,6 +16,21 @@
 	--L: 1.25rem;
 	--XL: 1.5rem;
 	--XXL: 2rem;
+	--XXXL: 2.5rem;
+	--XXXXL: 3rem;
+	--XXXXXL: 4rem;
+
+	--XXXS--em: 0.125em;
+	--XXS--em: 0.25em;
+	--XS--em: 0.5em;
+	--S--em: 0.75em;
+	--M--em: 1em;
+	--L--em: 1.25em;
+	--XL--em: 1.5em;
+	--XXL--em: 2em;
+	--XXXL--em: 2.5em;
+	--XXXXL--em: 3em;
+	--XXXXXL--em: 4em;
 
 	// Colours Definitions
 	--grey-100: hsl(0, 0%, 98%);

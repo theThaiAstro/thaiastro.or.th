@@ -11,7 +11,7 @@ type Heading = {
 type Text = {
 	type: 'text';
 	useDiv?: boolean;
-	variant?: 'small';
+	variant?: 'extra' | 'subextra';
 };
 
 type ReactProps = {
@@ -57,7 +57,8 @@ const Typography: React.FC<Props> = (props) => {
 		function getVariant(variant?: Text['variant']) {
 			// prettier-ignore
 			switch (variant) {
-				case 'small': return styles.VariantSmall;
+				case 'extra': return styles.VariantExtra;
+				case 'subextra': return styles.VariantSubExtra;
 				default: return;
 			}
 		}

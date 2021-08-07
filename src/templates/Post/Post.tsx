@@ -28,20 +28,32 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 
 	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.author ?? ''}`;
 
-	const metadata = (
-		<GenericBlock className={styles.Metadata}>
-			<Badge text="บทความ" />
-			<Typography type="text" variant="small" useDiv className={styles.Categories}>
-				{frontmatter.categories?.join(', ') ?? ''}
-			</Typography>
-			<Typography type="heading" level={1} className={styles.Title}>
-				{frontmatter.title}
-			</Typography>
-			<Typography type="text" variant="small" useDiv className={styles.Author}>
-				{AuthorDate}
-			</Typography>
-		</GenericBlock>
-	);
+	const Metadata = () => {
+		const Categories = () => (
+			<ul className={cx('List--OneLine', styles.Categories)}>
+				{frontmatter.categories!.map((c) => (
+					<li>
+						<Typography type="text" variant="extra">
+							{c}
+						</Typography>
+					</li>
+				))}
+			</ul>
+		);
+
+		return (
+			<GenericBlock className={styles.Metadata}>
+				<Badge text="บทความ" />
+				{frontmatter.categories && <Categories />}
+				<Typography type="heading" level={1} className={styles.Title}>
+					{frontmatter.title}
+				</Typography>
+				<Typography type="text" variant="subextra" useDiv className={styles.Author}>
+					{AuthorDate}
+				</Typography>
+			</GenericBlock>
+		);
+	};
 
 	const content = (
 		<GenericBlock className={styles.Content}>
@@ -49,12 +61,29 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 		</GenericBlock>
 	);
 
+	const Extra = () => {
+		const Tags = () => (
+			<ul className={cx('List--OneLine', styles.Tags)}>
+				{frontmatter.tags!.map((c) => (
+					<li>
+						<Typography type="text" variant="extra">
+							{c}
+						</Typography>
+					</li>
+				))}
+			</ul>
+		);
+
+		return <GenericBlock className={styles.Extra}>{frontmatter.tags && <Tags />}</GenericBlock>;
+	};
+
 	return (
 		<GlobalLayout>
-			<main style={{ display: 'flex', justifyContent: 'center' }}>
+			<main style={{ display: 'flex', justifyContent: 'center', marginBottom: '16rem' }}>
 				<article>
-					{metadata}
+					<Metadata />
 					{content}
+					<Extra />
 				</article>
 			</main>
 		</GlobalLayout>
@@ -69,6 +98,7 @@ export const PostQuery = graphql`
 				author
 				categories
 				date
+				tags
 				title
 			}
 		}

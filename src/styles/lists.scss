@@ -1,0 +1,21 @@
+@use '../styles/sizes';
+
+.List {
+	&--OneLine {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		li {
+			display: inline;
+
+			&:not(:last-of-type) {
+				margin-right: sizes.$XS;
+
+				&::after {
+					content: ',';
+				}
+			}
+		}
+	}
+}

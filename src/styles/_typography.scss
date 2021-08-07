@@ -1,4 +1,5 @@
 @use 'sizes';
+@import '~include-media/dist/include-media';
 
 $thin: 100;
 $extraLight: 200;
@@ -14,9 +15,18 @@ $font--M: sizes.$M;
 $font--L: sizes.$L;
 $font--XL: sizes.$XL;
 $font--XXL: sizes.$XXL;
+$font--XXXL: sizes.$XXXL;
+$font--XXXXL: sizes.$XXXXL;
 
 $font--headings: 'Anuphan', 'Noto Sans Thai UI', 'Noto Sans Thai', 'Noto Sans', Helvetica, Arial, sans-serif;
 $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
+
+%antiAlias {
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
 
 %heading {
 	font-family: $font--headings;
@@ -28,7 +38,7 @@ $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 
 %heading-1 {
 	@extend %heading;
-	font-size: $font--XL;
+	font-size: $font--XXXL;
 	font-weight: $semiBold;
 	margin: 0;
 }
@@ -52,26 +62,27 @@ $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 }
 
 %text-normal {
+	@extend %antiAlias;
 	@extend %text;
-	// Desktop @1.25rem
 	font-size: $font--L;
 	font-weight: $normal;
-	letter-spacing: 0.01em;
-	line-height: 160%;
+	line-height: 144%;
 }
 
 %text-badge {
 	@extend %heading-3;
 }
 
-%text-small--S {
+%text-extra {
+	@extend %antiAlias;
 	@extend %heading;
-	font-size: $font--S;
-	font-weight: $normal;
+	font-size: $font--M;
+	font-weight: $medium;
 }
 
-%text-small--XS {
+%text-extra--sub {
+	@extend %antiAlias;
 	@extend %heading;
-	font-size: $font--XS;
-	font-weight: $normal;
+	@extend %text-extra;
+	font-weight: $light;
 }

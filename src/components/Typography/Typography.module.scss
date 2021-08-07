@@ -4,6 +4,10 @@ h1.Typography {
 	@extend %heading-1;
 }
 
-.Typography.VariantSmall {
-	@extend %text-small--S;
+.Typography.VariantExtra {
+	@extend %text-extra;
+}
+
+.Typography.VariantSubExtra {
+	@extend %text-extra--sub;
 }

@@ -20,7 +20,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ noDefaultMargin }) => (
 					layout="fullWidth"
 					quality={100}
 					loading="eager"
-					placeholder="tracedSVG"
+					placeholder="blurred"
 					src={LogoPath}
 				/>
 			</div>

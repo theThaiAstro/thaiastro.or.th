@@ -1,4 +1,6 @@
 @use '../../styles/sizes';
+@use '../../styles/typography';
+@import '~include-media/dist/include-media';
 
 .GenericBlock {
 	padding: sizes.$XL sizes.$M;
@@ -7,15 +9,25 @@
 
 	&.Metadata {
 		padding-bottom: 0;
+		margin-top: sizes.$XXXXXL;
+
+		@include media('<tablet') {
+			margin-top: sizes.$XL;
+		}
 	}
 
 	&.Content {
-		padding-top: sizes.$XL;
+		// Why?
+		// padding-top: sizes.$XL;
+	}
+
+	&.Extra {
+		padding-top: 0;
 	}
 }
 
 .Author {
-	margin-top: sizes.$S;
+	margin-top: sizes.$M;
 }
 
 .Categories {
@@ -24,4 +36,8 @@
 
 h1.Title {
 	margin-top: sizes.$XL;
+}
+
+p {
+	@extend %text-normal;
 }
