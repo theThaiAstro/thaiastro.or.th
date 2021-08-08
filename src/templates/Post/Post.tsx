@@ -1,5 +1,5 @@
-import React from 'react';
 import { graphql } from 'gatsby';
+import React from 'react';
 
 import GenericPost, { GenericPostProps } from '../../layout/GenericPost/GenericPost';
 

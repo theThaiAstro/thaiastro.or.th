@@ -1,39 +1,39 @@
 {
-  "name": "the-thai-astronomical-society",
-  "version": "1.0.0",
-  "private": true,
-  "description": "The Thai Astronomical Society",
-  "author": "Thammarith",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "classnames": "^2.3.1",
-    "gatsby": "^3.10.2",
-    "gatsby-plugin-image": "^1.11.0",
-    "gatsby-plugin-mdx": "^2.11.0",
-    "gatsby-plugin-sass": "^4.11.0",
-    "gatsby-plugin-sharp": "^3.11.0",
-    "gatsby-source-filesystem": "^3.11.0",
-    "gatsby-transformer-sharp": "^3.11.0",
-    "include-media": "^1.4.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "sass": "^1.37.5"
-  },
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^2.0.2",
-    "@types/mdx-js__react": "^1.5.4",
-    "gh-pages": "^3.2.3"
-  }
+	"name": "the-thai-astronomical-society",
+	"version": "1.0.0",
+	"private": true,
+	"description": "The Thai Astronomical Society",
+	"author": "Thammarith",
+	"keywords": [
+		"gatsby"
+	],
+	"scripts": {
+		"develop": "gatsby develop",
+		"start": "gatsby develop",
+		"build": "gatsby build",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean",
+		"deploy": "gh-pages -d dist"
+	},
+	"dependencies": {
+		"@mdx-js/mdx": "^1.6.22",
+		"@mdx-js/react": "^1.6.22",
+		"classnames": "^2.3.1",
+		"gatsby": "^3.10.2",
+		"gatsby-plugin-image": "^1.11.0",
+		"gatsby-plugin-mdx": "^2.11.0",
+		"gatsby-plugin-sass": "^4.11.0",
+		"gatsby-plugin-sharp": "^3.11.0",
+		"gatsby-source-filesystem": "^3.11.0",
+		"gatsby-transformer-sharp": "^3.11.0",
+		"include-media": "^1.4.10",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"sass": "^1.37.5"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^2.0.2",
+		"@types/mdx-js__react": "^1.5.4",
+		"gh-pages": "^3.2.3"
+	}
 }

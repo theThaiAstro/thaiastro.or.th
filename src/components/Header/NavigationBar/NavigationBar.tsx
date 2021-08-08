@@ -1,7 +1,7 @@
-import React from 'react';
 import cx from 'classnames';
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+import React from 'react';
 
 import * as styles from './NavigationBar.module.scss';
 

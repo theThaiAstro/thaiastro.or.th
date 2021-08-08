@@ -1,13 +1,12 @@
-import React from 'react';
 import cx from 'classnames';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import React from 'react';
 
 import { DotSeparator } from '../../constants/Separator';
 import { Node } from '../../models/PostModel';
 import { formatDate } from '../../utils/dateUtils';
-import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
-
-import './ArticleCard.scss';
 import { getWordForSourceInstanceName } from '../../utils/sourceInstanceUtils';
+import './ArticleCard.scss';
 
 type Props = {
 	node: Node;

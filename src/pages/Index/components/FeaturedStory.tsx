@@ -1,5 +1,6 @@
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
+
 import { Node } from '../../../models/PostModel';
 
 const FeaturedStory: React.FC<Node<'title' | 'featuredImage'>> = ({ node }) => {

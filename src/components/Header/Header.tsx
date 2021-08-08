@@ -1,7 +1,7 @@
 import React from 'react';
-import NavigationBar, { NavigationBarProps } from './NavigationBar/NavigationBar';
 
 import * as styles from './Header.module.scss';
+import NavigationBar, { NavigationBarProps } from './NavigationBar/NavigationBar';
 
 type Props = NavigationBarProps;
 

@@ -1,12 +1,12 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
+
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import Typography from '../../components/Typography/Typography';
 import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
 import { GraphQLResult, Node } from '../../models/PostModel';
-import FeaturedStory from './components/FeaturedStory';
-
 import './IndexView.scss';
+import FeaturedStory from './components/FeaturedStory';
 
 type GraphQLFileResult = {
 	edges: { node: { childMdx: Node } }[];

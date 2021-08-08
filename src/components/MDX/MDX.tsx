@@ -1,6 +1,6 @@
-import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import React from 'react';
 
 interface Props {
 	children: string & React.ReactNode;
