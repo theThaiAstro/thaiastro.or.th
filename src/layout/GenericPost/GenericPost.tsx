@@ -1,16 +1,14 @@
-import React from 'react';
 import cx from 'classnames';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import React from 'react';
 
-import GlobalLayout from '../GlobalLayout/GlobalLayout';
 import Badge from '../../components/Badge/Badge';
 import MDX from '../../components/MDX/MDX';
 import Typography from '../../components/Typography/Typography';
 import { DotSeparator } from '../../constants/Separator';
 import { PostModel } from '../../models/PostModel';
-
 import { formatDate } from '../../utils/dateUtils';
-
+import GlobalLayout from '../GlobalLayout/GlobalLayout';
 import * as styles from './GenericPost.module.scss';
 
 export interface GenericPostProps {
@@ -65,7 +63,8 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 
 	const Extra = () => {
 		const Tags = () => (
-			<ul className={cx('List--OneLine', styles.Tags)}>
+			// <ul className={cx('List--OneLine', styles.Tags)}>
+			<ul className={cx('List--OneLine')}>
 				{frontmatter.tags!.map((t) => (
 					<li key={t}>
 						<Typography type="text" variant="extra">

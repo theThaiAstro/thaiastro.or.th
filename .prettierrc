@@ -4,5 +4,12 @@
     "semi": true,
     "useTabs": true,
     "singleQuote": true,
-    "printWidth": 120
+    "printWidth": 120,
+    "importOrder": [
+        "^@core/(.*)$",
+        "^@server/(.*)$",
+        "^@ui/(.*)$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true
 }

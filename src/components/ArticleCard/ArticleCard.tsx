@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 
-// import * as styles from './ArticleCard.module.scss';
 import { DotSeparator } from '../../constants/Separator';
 import { Node } from '../../models/PostModel';
 import { formatDate } from '../../utils/dateUtils';

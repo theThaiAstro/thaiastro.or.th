@@ -12,7 +12,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -31,6 +32,8 @@
     "sass": "^1.37.5"
   },
   "devDependencies": {
-    "@types/mdx-js__react": "^1.5.4"
+    "@trivago/prettier-plugin-sort-imports": "^2.0.2",
+    "@types/mdx-js__react": "^1.5.4",
+    "gh-pages": "^3.2.3"
   }
 }
