@@ -45,8 +45,9 @@ $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 
 %heading-2 {
 	@extend %heading;
-	font-size: $font--L;
-	font-weight: $semiBold;
+	font-size: $font--XXL;
+	font-weight: $medium;
+	margin: 0;
 }
 
 %heading-2--medium {

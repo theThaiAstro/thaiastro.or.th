@@ -31,6 +31,7 @@ export const IndexQuery = graphql`
 				}
 			}
 		}
+
 		latestStories: allMdx(
 			sort: { order: DESC, fields: frontmatter___date }
 			limit: 5
@@ -54,6 +55,72 @@ export const IndexQuery = graphql`
 					fields {
 						slug
 						sourceInstanceName
+					}
+				}
+			}
+		}
+
+		news: allFile(
+			filter: {
+				sourceInstanceName: { eq: "news" }
+				childrenMdx: { elemMatch: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } } }
+			}
+			limit: 10
+			sort: { order: DESC, fields: childMdx___frontmatter___date }
+		) {
+			edges {
+				node {
+					childMdx {
+						id
+						frontmatter {
+							date
+							author
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+								}
+							}
+							isFeatured
+							isUnpublished
+							title
+						}
+						fields {
+							slug
+							sourceInstanceName
+						}
+					}
+				}
+			}
+		}
+
+		articles: allFile(
+			filter: {
+				sourceInstanceName: { eq: "articles" }
+				childrenMdx: { elemMatch: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } } }
+			}
+			limit: 10
+			sort: { order: DESC, fields: childMdx___frontmatter___date }
+		) {
+			edges {
+				node {
+					childMdx {
+						id
+						frontmatter {
+							date
+							author
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+								}
+							}
+							isFeatured
+							isUnpublished
+							title
+						}
+						fields {
+							slug
+							sourceInstanceName
+						}
 					}
 				}
 			}

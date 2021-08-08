@@ -5,7 +5,7 @@ import cx from 'classnames';
 import { DotSeparator } from '../../constants/Separator';
 import { Node } from '../../models/PostModel';
 import { formatDate } from '../../utils/dateUtils';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 
 import './ArticleCard.scss';
 import { getWordForSourceInstanceName } from '../../utils/sourceInstanceUtils';
@@ -40,9 +40,10 @@ const ArticleCard: React.FC<Props> = ({ className, dictatorClassName, node, vari
 			<div className={cx('ArticleCard', variant, className)}>
 				<MetaData />
 				<div className="FeaturedImage">
-					{/* TODO: Fall-back image articles without featuredImage */}
-					{featuredImage && (
+					{featuredImage ? (
 						<GatsbyImage className="FeaturedImageContainer" alt={title} image={featuredImage} />
+					) : (
+						<StaticImage src="../../assets/images/placeholder-featuredImage.jpg" alt={title} />
 					)}
 				</div>
 				<div className="Title">{title}</div>

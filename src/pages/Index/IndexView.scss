@@ -3,9 +3,28 @@
 
 @import '~include-media/dist/include-media';
 
+%common-block {
+	max-width: sizes.$maxSize;
+	padding: sizes.$XXXXXL 0 0;
+	width: 100%;
+
+	@include media('<tablet') {
+		padding: sizes.$XXXL sizes.$L 0;
+	}
+}
+
 #MainPage {
 	display: flex;
-	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	.SectionContainer {
+		@extend %common-block;
+
+		h2 {
+			margin-bottom: sizes.$XXL;
+		}
+	}
 
 	a {
 		text-decoration: none;
@@ -13,13 +32,9 @@
 	}
 }
 
-.LatestStories {
+%default-layout {
 	display: grid;
-	padding: sizes.$XXXXXL 0;
-	max-width: sizes.$maxSize;
-	width: 100%;
-
-	grid-template-rows: repeat(3, 1fr);
+	grid-template-rows: repeat(3, auto);
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-areas: 'story-1 story-2' 'story-1 story-3' 'story-4 story-5';
 
@@ -30,13 +45,11 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(5, auto);
 		grid-template-areas: unset;
-
 		row-gap: sizes.$XXL;
-		padding: sizes.$XXXL sizes.$L;
 	}
 
 	@for $index from 1 to 5 {
-		.ArticleLink {
+		& > .ArticleLink {
 			&:nth-of-type(#{$index}) {
 				@include media('>=tablet') {
 					grid-area: story-#{$index};
@@ -46,17 +59,43 @@
 	}
 
 	// prettier-ignore
-	.ArticleLink:nth-of-type(1) {
+	& > .ArticleLink:nth-of-type(1) {
 		@include media('<tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Highlight--Mixin; } }
 		@include media('>=tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Highlight--Mixin; } }
 	}
 
 	// prettier-ignore
-	.ArticleLink:nth-of-type(2),
-	.ArticleLink:nth-of-type(3),
-	.ArticleLink:nth-of-type(4),
-	.ArticleLink:nth-of-type(5) {
+	& > .ArticleLink:nth-of-type(2),
+	& > .ArticleLink:nth-of-type(3),
+	& > .ArticleLink:nth-of-type(4),
+	& > .ArticleLink:nth-of-type(5) {
 		@include media('<tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Vertical--Mixin; } }
+		@include media('>=tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Normal--Mixin; } }
+	}
+}
+
+#MainPage > .LatestStories {
+	@extend %common-block;
+	@extend %default-layout;
+
+	grid-template-rows: repeat(3, 1fr);
+}
+
+.SectionContainer > .News,
+.SectionContainer > .Articles {
+	@extend %default-layout;
+
+	// prettier-ignore
+	& > .ArticleLink:nth-of-type(2),
+	& > .ArticleLink:nth-of-type(3) {
+		@include media('<tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Vertical--Mixin; } }
+		@include media('>=tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Normal--Mixin; } }
+	}
+
+	// prettier-ignore
+	& > .ArticleLink:nth-of-type(4),
+	& > .ArticleLink:nth-of-type(5) {
+		@include media('<tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Text--Mixin; } }
 		@include media('>=tablet') { & > .ArticleCardRatioDictator > .ArticleCard { @include article-card.ArticleCard--Normal--Mixin; } }
 	}
 }

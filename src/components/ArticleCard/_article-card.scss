@@ -69,8 +69,10 @@
 
 @mixin text {
 	display: grid;
+	grid-template-columns: 1fr;
 	grid-template-rows: auto auto;
-	row-gap: sizes.$M;
+	column-gap: 0;
+	row-gap: sizes.$XS;
 
 	.FeaturedImage,
 	.SourceInstanceName {
