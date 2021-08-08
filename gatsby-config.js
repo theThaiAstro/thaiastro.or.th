@@ -1,4 +1,4 @@
-const { ARTICLES, NEWS, IMAGES } = require('./src/constants/SourceInstance');
+const { ARTICLES, IMAGES, NEWS } = require('./src/constants/SourceInstance');
 
 module.exports = {
 	siteMetadata: {

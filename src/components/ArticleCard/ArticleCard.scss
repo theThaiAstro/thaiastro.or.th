@@ -1,0 +1,35 @@
+@use '../../styles/colours';
+@use '../../styles/sizes';
+@use '../../styles/typography';
+
+@use './article-card';
+
+.ArticleCardRatioDictator {
+	display: grid;
+	height: 100%;
+
+	& > * {
+		grid-area: 1/1;
+	}
+}
+
+.ArticleCard {
+	.FeaturedImage {
+		border-radius: sizes.$XXS;
+		overflow: hidden;
+	}
+
+	.SourceInstanceName {
+		@extend %text-extra;
+		color: colours.$primary-500;
+	}
+
+	.Metadata {
+		@extend %text-small;
+	}
+
+	.Title {
+		// @extend %heading-3;
+		@extend %heading-2--medium;
+	}
+}

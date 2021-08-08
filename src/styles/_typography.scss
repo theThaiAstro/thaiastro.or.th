@@ -49,6 +49,12 @@ $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 	font-weight: $semiBold;
 }
 
+%heading-2--medium {
+	@extend %heading;
+	font-size: $font--L;
+	font-weight: $medium;
+}
+
 %heading-3 {
 	@extend %heading;
 	font-size: $font--M;
@@ -84,5 +90,12 @@ $font--text: 'Prajad', 'Thonburi', Helvetica, Arial, sans-serif;
 	@extend %antiAlias;
 	@extend %heading;
 	@extend %text-extra;
+	font-weight: $light;
+}
+
+%text-small {
+	@extend %antiAlias;
+	@extend %heading;
+	font-size: $font--S;
 	font-weight: $light;
 }

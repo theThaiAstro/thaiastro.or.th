@@ -1,0 +1,16 @@
+@use './colours';
+@use './sizes';
+
+@mixin badge {
+	align-items: center;
+	background: colours.$primary-500;
+	border-radius: sizes.$XXS;
+	color: colours.$grey-100;
+	display: inline-flex;
+	height: sizes.$XXL;
+	padding: 0 sizes.$M;
+}
+
+%badge {
+	@include badge;
+}

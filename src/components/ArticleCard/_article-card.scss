@@ -1,0 +1,103 @@
+@use '../../styles/badges';
+@use '../../styles/sizes';
+
+@mixin highlight {
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	grid-template-columns: 1fr;
+	grid-template-areas: 'featuredImage' 'metadata' 'title';
+	position: relative;
+
+	row-gap: sizes.$S;
+
+	.SourceInstanceName {
+		@include badges.badge;
+
+		grid-area: sourceInstanceName;
+		position: absolute;
+		top: 1rem;
+		left: calc(#{sizes.$M} * -1);
+	}
+
+	.FeaturedImage {
+		grid-area: featuredImage;
+
+		&Container {
+			height: 100%;
+		}
+	}
+
+	.Metadata {
+		grid-area: metadata;
+	}
+
+	.Title {
+		grid-area: title;
+	}
+}
+
+@mixin two-columns {
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	grid-template-areas:
+		'featuredImage sourceInstanceName'
+		'featuredImage metadata'
+		'featuredImage title';
+	column-gap: sizes.$L;
+	row-gap: sizes.$XS;
+
+	.FeaturedImage {
+		grid-area: featuredImage;
+
+		&Container {
+			height: 100%;
+		}
+	}
+
+	.SourceInstanceName {
+		grid-area: sourceInstanceName;
+	}
+
+	.Metadata {
+		grid-area: metadata;
+	}
+
+	.Title {
+		grid-area: title;
+	}
+}
+
+@mixin text {
+	display: grid;
+	grid-template-rows: auto auto;
+	row-gap: sizes.$M;
+
+	.FeaturedImage,
+	.SourceInstanceName {
+		display: none;
+	}
+}
+
+// Compiled
+@mixin ArticleCard--Highlight--Mixin {
+	@include highlight;
+}
+
+@mixin ArticleCard--Text--Mixin {
+	@include text;
+}
+
+@mixin ArticleCard--Compact--Mixin {
+	@include two-columns;
+	grid-template-columns: 7fr 20fr;
+}
+
+@mixin ArticleCard--Normal--Mixin {
+	@include two-columns;
+	grid-template-columns: 7fr 20fr;
+}
+
+@mixin ArticleCard--Vertical--Mixin {
+	@include two-columns;
+	grid-template-columns: 1fr 3fr;
+}
