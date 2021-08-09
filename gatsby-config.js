@@ -1,6 +1,7 @@
 const { ARTICLES, IMAGES, NEWS } = require('./src/constants/SourceInstance');
 
 module.exports = {
+	pathPrefix: '/thaiastro.or.th',
 	siteMetadata: {
 		siteUrl: 'https://www.yourdomain.tld',
 		title: 'The Thai Astronomical Society',

@@ -10,9 +10,10 @@
 	"scripts": {
 		"develop": "gatsby develop",
 		"start": "gatsby develop",
-		"build": "gatsby build",
+		"build": "gatsby build --prefix-paths",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
+		"deploy_": "gh-pages -d public",
 		"deploy": "node gh-pages.js"
 	},
 	"dependencies": {
