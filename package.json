@@ -13,7 +13,7 @@
 		"build": "gatsby build",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
-		"deploy": "gh-pages -d dist"
+		"deploy": "node gh-pages.js"
 	},
 	"dependencies": {
 		"@mdx-js/mdx": "^1.6.22",

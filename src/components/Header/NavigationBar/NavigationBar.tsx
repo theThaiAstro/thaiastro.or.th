@@ -12,13 +12,11 @@ export interface NavigationBarProps {
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ noDefaultMargin }) => {
-	const leftAlign = document.querySelector('main > article')?.getBoundingClientRect();
-
 	return (
 		<nav id={styles.NavigationBar} className={cx(noDefaultMargin && styles.NoDefaultMargin)}>
 			<div id={styles.LogoJustifier}>
 				<Link to="/" className={styles.NavigationBarHomeLink}>
-					<div id={styles.NavigationBarLogoContainer} style={{ left: `${leftAlign}px` ?? 'var(--XXXXXXXL)' }}>
+					<div id={styles.NavigationBarLogoContainer}>
 						<StaticImage
 							alt="สมาคมดาราศาสตร์ไทย"
 							layout="fullWidth"

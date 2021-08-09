@@ -6,7 +6,6 @@ import Typography from '../../components/Typography/Typography';
 import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
 import { GraphQLResult, Node } from '../../models/PostModel';
 import './IndexView.scss';
-import FeaturedStory from './components/FeaturedStory';
 
 type GraphQLFileResult = {
 	edges: { node: { childMdx: Node } }[];
@@ -14,7 +13,7 @@ type GraphQLFileResult = {
 
 export interface IndexViewProps {
 	data: {
-		featuredPost: GraphQLResult;
+		// featuredPost: GraphQLResult;
 		latestStories: GraphQLResult;
 		news: GraphQLFileResult;
 		articles: GraphQLFileResult;
@@ -22,17 +21,15 @@ export interface IndexViewProps {
 }
 
 const IndexView: React.FC<IndexViewProps> = ({ data }) => {
-	const { edges: featuredPosts } = data.featuredPost;
-	const { edges: latestStories } = data.latestStories;
-	const { edges: latestNews } = data.news;
-	const { edges: latestArticles } = data.articles;
+	// const { edges: featuredPosts } = data.featuredPost;
 
-	const types = ['text', 'vertical', 'normal', 'compact', 'highlight'];
+	const latestStories = data?.latestStories?.edges ?? [];
+	const latestNews = data?.news?.edges ?? [];
+	const latestArticles = data?.articles?.edges ?? [];
+
 	const alreadyShownStoriesIds = latestStories.map(({ node }) => node.id);
 
 	const LatestStoriesSection = () => {
-		const variantOrders = ['highlight'];
-
 		return (
 			<section className="LatestStories">
 				{latestStories.map(({ node }) => (
