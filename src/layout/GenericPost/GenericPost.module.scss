@@ -1,3 +1,4 @@
+@use '../../styles/colours';
 @use '../../styles/sizes';
 @use '../../styles/typography';
 @import '~include-media/dist/include-media';
@@ -23,6 +24,19 @@
 	&.Content {
 		p {
 			@extend %text-normal;
+			margin: sizes.$XL 0;
+		}
+
+		figure {
+			overflow: hidden;
+			margin: 0;
+
+			figcaption {
+				background: colours.$grey-900;
+				color: colours.$grey-100;
+				font-size: typography.$font--M;
+				padding: sizes.$XS sizes.$M;
+			}
 		}
 	}
 

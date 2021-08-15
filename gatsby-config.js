@@ -7,32 +7,11 @@ module.exports = {
 		title: 'The Thai Astronomical Society',
 	},
 	plugins: [
-		'gatsby-plugin-image',
-		'gatsby-plugin-sass',
-		'gatsby-remark-images',
-		'gatsby-transformer-sharp',
 		{
-			resolve: 'gatsby-plugin-mdx',
+			resolve: 'gatsby-source-filesystem',
 			options: {
-				extensions: ['.mdx', '.md'],
-				gatsbyRemarkPlugins: [
-					{
-						resolve: 'gatsby-remark-images',
-						options: {
-							maxWidth: 2000,
-						},
-					},
-				],
-			},
-		},
-		{
-			resolve: 'gatsby-plugin-sharp',
-			options: {
-				defaults: {
-					quality: 100,
-					formats: ['auto', 'webp', 'avif'],
-					placeholder: 'blurred',
-				},
+				name: IMAGES,
+				path: `${__dirname}/src/content/${IMAGES}`,
 			},
 		},
 		{
@@ -49,11 +28,40 @@ module.exports = {
 				path: `${__dirname}/src/content/${NEWS}`,
 			},
 		},
+		'gatsby-plugin-image',
+		'gatsby-plugin-sass',
+		'gatsby-remark-images',
+		'gatsby-transformer-sharp',
 		{
-			resolve: 'gatsby-source-filesystem',
+			resolve: 'gatsby-plugin-mdx',
 			options: {
-				name: IMAGES,
-				path: `${__dirname}/src/content/${IMAGES}`,
+				extensions: ['.mdx', '.md'],
+				gatsbyRemarkPlugins: [
+					{
+						resolve: 'gatsby-remark-relative-images',
+						options: {
+							staticFolderName: 'src/content/images',
+						},
+					},
+					{
+						resolve: 'gatsby-remark-images',
+						options: {
+							maxWidth: 2000,
+							showCaptions: ['title'],
+							quality: 100,
+						},
+					},
+				],
+			},
+		},
+		{
+			resolve: 'gatsby-plugin-sharp',
+			options: {
+				defaults: {
+					quality: 100,
+					formats: ['auto', 'webp', 'avif'],
+					placeholder: 'blurred',
+				},
 			},
 		},
 	],

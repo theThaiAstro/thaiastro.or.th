@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React from 'react';
 import ReactPlayer, { ReactPlayerProps } from 'react-player';
 
@@ -11,7 +12,7 @@ interface Props {
 
 const Video: React.FC<Props> = ({ aspectRatio, playerProps, url }) => {
 	return (
-		<div className={styles.VideoContainer}>
+		<div className={cx(styles.VideoContainer, 'VideoContainer')}>
 			<svg viewBox={`0 0 ${aspectRatio?.join(' ') ?? '16 9'}`}></svg>
 			<ReactPlayer url={url} height="100%" width="100%" {...playerProps} />
 		</div>

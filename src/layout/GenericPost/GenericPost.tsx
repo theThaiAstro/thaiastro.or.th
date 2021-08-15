@@ -9,7 +9,9 @@ import { DotSeparator } from '../../constants/Separator';
 import { PostModel } from '../../models/PostModel';
 import { formatDate } from '../../utils/dateUtils';
 import GlobalLayout from '../GlobalLayout/GlobalLayout';
+
 import * as styles from './GenericPost.module.scss';
+import './GenericPost.scss';
 
 export interface GenericPostProps {
 	data: {
@@ -56,7 +58,7 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 	};
 
 	const content = (
-		<GenericBlock className={styles.Content}>
+		<GenericBlock className={cx(styles.Content, 'GenericPost')}>
 			<MDX withRenderer>{mdx.body}</MDX>
 		</GenericBlock>
 	);
