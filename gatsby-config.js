@@ -1,7 +1,7 @@
 const { ARTICLES, IMAGES, NEWS } = require('./src/constants/SourceInstance');
 
 module.exports = {
-	pathPrefix: '/thaiastro.or.th',
+	pathPrefix: (process.env.NODE_ENV === 'production' && '/thaiastro.or.th') || undefined,
 	siteMetadata: {
 		siteUrl: 'https://www.yourdomain.tld',
 		title: 'The Thai Astronomical Society',
@@ -9,7 +9,22 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-image',
 		'gatsby-plugin-sass',
+		'gatsby-remark-images',
 		'gatsby-transformer-sharp',
+		{
+			resolve: 'gatsby-plugin-mdx',
+			options: {
+				extensions: ['.mdx', '.md'],
+				gatsbyRemarkPlugins: [
+					{
+						resolve: 'gatsby-remark-images',
+						options: {
+							maxWidth: 2000,
+						},
+					},
+				],
+			},
+		},
 		{
 			resolve: 'gatsby-plugin-sharp',
 			options: {
@@ -18,12 +33,6 @@ module.exports = {
 					formats: ['auto', 'webp', 'avif'],
 					placeholder: 'blurred',
 				},
-			},
-		},
-		{
-			resolve: 'gatsby-plugin-mdx',
-			options: {
-				extensions: ['.mdx', '.md'],
 			},
 		},
 		{

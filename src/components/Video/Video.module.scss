@@ -1,0 +1,7 @@
+.VideoContainer {
+	display: grid;
+
+	& > * {
+		grid-area: 1/1;
+	}
+}

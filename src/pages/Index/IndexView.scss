@@ -8,7 +8,7 @@
 	padding: sizes.$XXXXXL 0 0;
 	width: 100%;
 
-	@include media('<tablet') {
+	@include media('<desktop') {
 		padding: sizes.$XXXL sizes.$L 0;
 	}
 }
@@ -78,7 +78,9 @@
 	@extend %common-block;
 	@extend %default-layout;
 
-	grid-template-rows: repeat(3, 1fr);
+	@include media('>=tablet') {
+		grid-template-rows: repeat(3, 1fr);
+	}
 }
 
 .SectionContainer > .News,

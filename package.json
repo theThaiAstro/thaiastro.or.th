@@ -10,11 +10,12 @@
 	"scripts": {
 		"develop": "gatsby develop",
 		"start": "gatsby develop",
-		"build": "gatsby build --prefix-paths",
+		"build": "gatsby clean && gatsby build --prefix-paths",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
 		"deploy_": "gh-pages -d public",
-		"deploy": "node gh-pages.js"
+		"deploy": "node gh-pages.js",
+		"magic": "gatsby clean && gatsby build --prefix-paths && node gh-pages.js"
 	},
 	"dependencies": {
 		"@mdx-js/mdx": "^1.6.22",
@@ -25,11 +26,13 @@
 		"gatsby-plugin-mdx": "^2.11.0",
 		"gatsby-plugin-sass": "^4.11.0",
 		"gatsby-plugin-sharp": "^3.11.0",
+		"gatsby-remark-images": "^5.8.0",
 		"gatsby-source-filesystem": "^3.11.0",
 		"gatsby-transformer-sharp": "^3.11.0",
 		"include-media": "^1.4.10",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
+		"react-player": "^2.9.0",
 		"sass": "^1.37.5"
 	},
 	"devDependencies": {
