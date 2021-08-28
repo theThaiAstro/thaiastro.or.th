@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
+import Image from '../Image/Image';
 import Video from '../Video/Video';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 	withRenderer?: boolean;
 }
 
-const shortcodes = { Video };
+const shortcodes = { Image, Video };
 
 const MDX: React.FC<Props> = ({ children, withRenderer }) =>
 	withRenderer ? (

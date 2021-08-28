@@ -6,5 +6,7 @@ export const FeaturedImage: string;
 export const GenericBlock: string;
 export const MainContent: string;
 export const Metadata: string;
+export const ShareButtons: string;
+export const ShareButtonsSeconday: string;
 // export const Tags: string;
 export const Title: string;

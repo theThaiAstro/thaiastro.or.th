@@ -1,7 +1,7 @@
 const { ARTICLES, IMAGES, NEWS } = require('./src/constants/SourceInstance');
 
 module.exports = {
-	pathPrefix: (process.env.NODE_ENV === 'production' && '/thaiastro.or.th') || undefined,
+	pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/thaiastro.or.th',
 	siteMetadata: {
 		siteUrl: 'https://www.yourdomain.tld',
 		title: 'The Thai Astronomical Society',

@@ -1,4 +1,5 @@
 const path = require('path');
+const crypto = require(`crypto`);
 const { ARTICLES, NEWS } = require('./src/constants/SourceInstance');
 
 exports.createPages = async function ({ actions, graphql, reporter }) {
@@ -103,7 +104,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 	function getData(node) {
 		const { date, slug } = node.frontmatter;
 		// TODO: Do we need only year?
-		const datePath = date.split('T')[0];
+		const datePath = date.split('T')[0].split('-').slice(0, 2).join('/');
 		const { name, sourceInstanceName } = getNode(node.parent);
 
 		let suffix = '';

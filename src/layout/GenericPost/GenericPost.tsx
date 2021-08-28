@@ -4,6 +4,7 @@ import React from 'react';
 
 import Badge from '../../components/Badge/Badge';
 import MDX from '../../components/MDX/MDX';
+import ShareButtons from '../../components/Share/ShareButtons';
 import Typography from '../../components/Typography/Typography';
 import { DotSeparator } from '../../constants/Separator';
 import { PostModel } from '../../models/PostModel';
@@ -53,28 +54,32 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 				<Typography type="text" variant="subextra" useDiv className={styles.Author}>
 					{AuthorDate}
 				</Typography>
+				<ShareButtons className={styles.ShareButtons} />
 			</GenericBlock>
 		);
 	};
 
-	const content = (
-		<GenericBlock className={cx(styles.Content, 'GenericPost')}>
+	const Content = () => (
+		<GenericBlock className={cx(styles.Content, 'ContentBlock')}>
 			<MDX withRenderer>{mdx.body}</MDX>
 		</GenericBlock>
 	);
 
 	const Extra = () => {
 		const Tags = () => (
-			// <ul className={cx('List--OneLine', styles.Tags)}>
-			<ul className={cx('List--OneLine')}>
-				{frontmatter.tags!.map((t) => (
-					<li key={t}>
-						<Typography type="text" variant="extra">
-							{t}
-						</Typography>
-					</li>
-				))}
-			</ul>
+			<div>
+				<ShareButtons className={styles.ShareButtonsSeconday} />
+				{/* <ul className={cx('List--OneLine', styles.Tags)}> */}
+				<ul className={cx('List--OneLine')}>
+					{frontmatter.tags!.map((t) => (
+						<li key={t}>
+							<Typography type="text" variant="extra">
+								{t}
+							</Typography>
+						</li>
+					))}
+				</ul>
+			</div>
 		);
 
 		return <GenericBlock className={styles.Extra}>{frontmatter.tags && <Tags />}</GenericBlock>;
@@ -82,13 +87,13 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 
 	return (
 		<GlobalLayout>
-			<main className={styles.MainContent}>
+			<main className={cx(styles.MainContent, 'GenericPost')}>
 				<article>
 					<Metadata />
 					{featuredImage && (
 						<GatsbyImage className={styles.FeaturedImage} image={featuredImage} alt={frontmatter.title} />
 					)}
-					{content}
+					<Content />
 					<Extra />
 				</article>
 			</main>

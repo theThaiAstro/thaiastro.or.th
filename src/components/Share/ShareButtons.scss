@@ -1,0 +1,80 @@
+@use '../../styles/colours';
+@use '../../styles/sizes';
+@use '../../styles/typography';
+
+.ShareButtonsContainer {
+	align-items: center;
+	display: flex;
+
+	.ShareText {
+		margin-right: sizes.$XXS;
+	}
+
+	.NativeShare {
+		@extend %heading;
+		font-weight: typography.$semiBold;
+
+		align-items: center;
+		background-color: colours.$blue-300;
+		color: colours.$grey-100;
+		display: inline-flex;
+		justify-content: center;
+		height: sizes.$XXXL;
+		margin-right: sizes.$S;
+		padding: 0 sizes.$M;
+
+		&:hover {
+			background: colours.$blue-700;
+			color: colours.$grey-100;
+			cursor: pointer;
+		}
+	}
+
+	.ShareButton {
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		height: sizes.$XXXL;
+		width: sizes.$XXXL;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.Email {
+			color: colours.$primary-500;
+
+			&:hover {
+				background: colours.$primary-500;
+				color: white;
+			}
+		}
+
+		&.Facebook {
+			color: colours.$Facebook;
+
+			&:hover {
+				background: colours.$Facebook;
+				color: white;
+			}
+		}
+
+		&.Messenger {
+			color: colours.$Messenger;
+
+			&:hover {
+				background: colours.$Messenger--gradient;
+				color: white;
+			}
+		}
+
+		&.Twitter {
+			color: colours.$Twitter;
+
+			&:hover {
+				background: colours.$Twitter;
+				color: white;
+			}
+		}
+	}
+}

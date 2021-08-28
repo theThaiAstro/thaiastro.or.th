@@ -1,3 +1,5 @@
+// @deprecated: Do not use CSS module, use *.scss instead
+
 @use '../../styles/colours';
 @use '../../styles/sizes';
 @use '../../styles/typography';
@@ -60,7 +62,15 @@
 .MainContent {
 	display: flex;
 	justify-content: center;
-	margin-bottom: sizes.$XXXXXXXL;
+	margin-bottom: sizes.$XXXXXXL;
+}
+
+.ShareButtons {
+	margin-top: sizes.$XL;
+}
+
+.ShareButtonsSeconday {
+	margin-bottom: sizes.$XXL;
 }
 
 h1.Title {
