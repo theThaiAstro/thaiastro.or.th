@@ -29,6 +29,13 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		<section className={cx(styles.GenericBlock, className)}>{children}</section>
 	);
 
+	const url = (() => {
+		const url = window.location.href;
+		// prettier-ignore
+		if (!url.includes('thaiastro.nectec.or.th') || !url.includes('thaiastro.or.th')) return `https://thaiastro.or.th${window.location.pathname}`;
+		return url;
+	})();
+
 	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.author ?? ''}`;
 
 	const Metadata = () => {
@@ -54,7 +61,7 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 				<Typography type="text" variant="subextra" useDiv className={styles.Author}>
 					{AuthorDate}
 				</Typography>
-				<ShareButtons className={styles.ShareButtons} />
+				<ShareButtons text={frontmatter.title} url={url} className={styles.ShareButtons} />
 			</GenericBlock>
 		);
 	};
@@ -68,7 +75,7 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 	const Extra = () => {
 		const Tags = () => (
 			<div>
-				<ShareButtons className={styles.ShareButtonsSeconday} />
+				<ShareButtons text={frontmatter.title} url={url} className={styles.ShareButtonsSeconday} />
 				{/* <ul className={cx('List--OneLine', styles.Tags)}> */}
 				<ul className={cx('List--OneLine')}>
 					{frontmatter.tags!.map((t) => (

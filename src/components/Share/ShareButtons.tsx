@@ -1,5 +1,5 @@
 import { faFacebookF, faTwitter, IconDefinition } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import React from 'react';
@@ -8,31 +8,56 @@ import './ShareButtons.scss';
 
 type Props = {
 	className?: string;
-	title: string;
 	text: string;
 	url: string;
 };
 
+type IconProps = {
+	social: string;
+	icon: IconDefinition;
+	title?: string;
+	onClick: () => void;
+};
+
 const ShareButtons: React.FC<Props> = (props) => {
-	const Icon = ({ social, icon, onClick }: { social: string; icon: IconDefinition; onClick: () => void }) => (
-		<div className={cx('ShareButton', social)} onClick={onClick}>
+	const Icon = ({ social, icon, title, onClick }: IconProps) => (
+		<div className={cx('ShareButton', social)} onClick={onClick} title={title}>
 			<FontAwesomeIcon icon={icon} />
 		</div>
 	);
 
+	const sharingUrl = props.url ?? 'https://thaiastro.nectec.or.th';
 	const sharingText = props.text ?? 'สมาคมดาราศาสตร์ไทย';
-	const sharingUrl = encodeURIComponent(props.url ?? 'https://thaiastro.nectec.or.th');
+	const encodedUrl = encodeURIComponent(sharingUrl);
 
-	const onShareClick = (url: string) =>
+	const onShareClick = (url: string) => {
 		window.open(url.replaceAll('NEW_LINE', '%0a'), '_blank', 'width=800,height=600');
+	};
 
-	const facebookUrl = `https://facebook.com/sharer.php?u=${sharingUrl}`;
-	const twitterUrl = `https://twitter.com/intent/tweet?text=${sharingText}NEW_LINENEW_LINE${sharingUrl}`;
+	const onCopy = (url: string) => {
+		navigator.clipboard.writeText(url);
+	};
+
+	const facebookUrl = `https://facebook.com/sharer.php?u=${encodedUrl}`;
+	const twitterUrl = `https://twitter.com/intent/tweet?text=${sharingText}NEW_LINENEW_LINE${encodedUrl}`;
 
 	const Icons = [
-		<Icon social="Facebook" icon={faFacebookF} key="Facebook" onClick={() => onShareClick(facebookUrl)} />,
+		<Icon
+			social="Facebook"
+			icon={faFacebookF}
+			key="Facebook"
+			title="แชร์บทความนี้"
+			onClick={() => onShareClick(facebookUrl)}
+		/>,
 		// <Icon social="Messenger" icon={faFacebookMessenger} key="Messenger" onClick={() => onShareClick()} />,
-		<Icon social="Twitter" icon={faTwitter} key="Twitter" onClick={() => onShareClick(twitterUrl)} />,
+		<Icon
+			social="Twitter"
+			icon={faTwitter}
+			key="Twitter"
+			title="ทวีตบทความนี้"
+			onClick={() => onShareClick(twitterUrl)}
+		/>,
+		<Icon social="Link" icon={faLink} key="Link" title="คลิกเพื่อคัดลอกลิงก์" onClick={() => onCopy(sharingUrl)} />,
 		// <Icon social="Email" icon={faEnvelope} key="Email" onClick={() => onShareClick()} />,
 	];
 
@@ -47,7 +72,8 @@ const ShareButtons: React.FC<Props> = (props) => {
 	);
 
 	function onNativeShareButtonClick() {
-		const { title, text, url } = props;
+		const { text, url } = props;
+		const title = text;
 		const content = { title, text, url };
 
 		// @ts-expect-error

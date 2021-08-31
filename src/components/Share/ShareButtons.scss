@@ -16,6 +16,7 @@
 
 		align-items: center;
 		background-color: colours.$blue-300;
+		border-radius: sizes.$XXS;
 		color: colours.$grey-100;
 		display: inline-flex;
 		justify-content: center;
@@ -32,6 +33,7 @@
 
 	.ShareButton {
 		align-items: center;
+		border-radius: sizes.$XXS;
 		display: inline-flex;
 		justify-content: center;
 		height: sizes.$XXXL;
@@ -55,6 +57,15 @@
 
 			&:hover {
 				background: colours.$Facebook;
+				color: white;
+			}
+		}
+
+		&.Link {
+			color: colours.$primary-500;
+
+			&:hover {
+				background: colours.$primary-500;
 				color: white;
 			}
 		}
