@@ -3,7 +3,7 @@ title: พบจานกำเนิดดวงจันทร์ ต่าง
 date: 2019-01-29
 categories: [การสำรวจอวกาศ, ปรากฏการณ์]
 tags: [ทดสอบ 1, ทดสอบ 2, ทดสอบ3]
-author: [thammarith]
+authors: [thammarith]
 featuredImage: bridge.jpg
 ---
 

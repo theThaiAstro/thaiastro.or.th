@@ -23,7 +23,7 @@ export interface Frontmatter {
 	date: Date;
 	featuredImage: any;
 	title: string;
-	author?: string[];
+	authors?: string[];
 	categories?: string[];
 	isFeatured?: boolean;
 	isUnpublished?: boolean;

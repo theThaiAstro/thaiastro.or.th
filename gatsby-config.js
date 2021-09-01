@@ -1,4 +1,4 @@
-const { ARTICLES, IMAGES, NEWS } = require('./src/constants/SourceInstance');
+const { ARTICLES, AUTHORS, IMAGES, NEWS } = require('./src/constants/SourceInstance');
 
 module.exports = {
 	pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/thaiastro.or.th',
@@ -26,6 +26,13 @@ module.exports = {
 			options: {
 				name: NEWS,
 				path: `${__dirname}/src/content/${NEWS}`,
+			},
+		},
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				name: AUTHORS,
+				path: `${__dirname}/src/content/${AUTHORS}`,
 			},
 		},
 		'gatsby-plugin-image',

@@ -453,7 +453,7 @@ type Frontmatter {
   date: Date
   categories: [String!]
   tags: [String!]
-  author: [String!]
+  authors: [String!]
   featuredImage: File @fileByImagesPath
   isFeatured: Boolean
   isUnpublished: Boolean

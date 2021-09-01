@@ -36,7 +36,7 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		return url;
 	})();
 
-	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.author ?? ''}`;
+	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.authors ?? ''}`;
 
 	const Metadata = () => {
 		const Categories = () => (

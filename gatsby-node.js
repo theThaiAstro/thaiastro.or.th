@@ -1,11 +1,10 @@
 const path = require('path');
-const crypto = require(`crypto`);
-const { ARTICLES, NEWS } = require('./src/constants/SourceInstance');
+const { ARTICLES, AUTHORS, NEWS } = require('./src/constants/SourceInstance');
 
 exports.createPages = async function ({ actions, graphql, reporter }) {
 	const { data, errors } = await graphql(`
-		query {
-			allMdx {
+		{
+			everyMdx: allMdx(filter: { fields: { sourceInstanceName: { ne: "authors" } } }) {
 				edges {
 					node {
 						id
@@ -15,12 +14,20 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 					}
 				}
 			}
+			everyAuthor: allMdx {
+				group(field: frontmatter___authors) {
+					fieldValue
+				}
+			}
 		}
 	`);
 
 	if (errors) reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
 
-	data.allMdx.edges.forEach(({ node }) => {
+	const postComponent = path.resolve('./src/templates/Post/Post.tsx');
+	const authorComponent = path.resolve('./src/templates/Author/Author.tsx');
+
+	data.everyMdx.edges.forEach(({ node }) => {
 		const { id, fields } = node;
 		const { slug, sourceInstanceName } = fields;
 
@@ -29,8 +36,18 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 
 		actions.createPage({
 			path: slug,
-			component: path.resolve('./src/templates/Post/Post.tsx'),
+			component: postComponent,
 			context: { id },
+		});
+	});
+
+	data.everyAuthor.group.forEach((author) => {
+		actions.createPage({
+			path: `authors/${author.fieldValue}`,
+			component: authorComponent,
+			context: {
+				author: author.fieldValue,
+			},
 		});
 	});
 };
@@ -71,9 +88,9 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 		type Frontmatter @dontInfer {
 			title: String!
 			date: Date
-			categories: [String!]
-			tags: [String!]
-			author: [String!]
+			categories: [String]
+			tags: [String]
+			authors: [String]
 			featuredImage: File @fileByImagesPath
 			isFeatured: Boolean
 			isUnpublished: Boolean
@@ -87,7 +104,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 	if (node.internal.type !== 'Mdx') return;
 
-	const [path, sourceInstanceName] = getData(node);
+	const { path, sourceInstanceName } = getData(node);
 
 	createNodeField({
 		node,
@@ -107,11 +124,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		const datePath = date.split('T')[0].split('-').slice(0, 2).join('/');
 		const { name, sourceInstanceName } = getNode(node.parent);
 
-		let suffix = '';
-		if (slug) suffix = slug;
-		else if (sourceInstanceName === ARTICLES) suffix = name;
-		else if (sourceInstanceName === NEWS) suffix = `${datePath}/${name}`;
+		const suffix = (() => {
+			if (slug) return slug;
+			if (sourceInstanceName === ARTICLES) return name;
+			if (sourceInstanceName === AUTHORS) return name;
+			if (sourceInstanceName === NEWS) return `${datePath}/${name}`;
+			return '';
+		})();
 
-		return [`${sourceInstanceName}/${suffix}`, sourceInstanceName];
+		return {
+			path: `${sourceInstanceName}/${suffix}`,
+			sourceInstanceName,
+		};
 	}
 };

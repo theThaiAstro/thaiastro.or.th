@@ -6,6 +6,7 @@ import { DotSeparator } from '../../constants/Separator';
 import { Node } from '../../models/PostModel';
 import { formatDate } from '../../utils/dateUtils';
 import { getWordForSourceInstanceName } from '../../utils/sourceInstanceUtils';
+
 import './ArticleCard.scss';
 
 type Props = {
@@ -16,12 +17,12 @@ type Props = {
 };
 
 const ArticleCard: React.FC<Props> = ({ className, dictatorClassName, node, variant: _variant }) => {
-	const { author, date, title, featuredImage: _featuredImage } = node.frontmatter;
+	const { authors, date, title, featuredImage: _featuredImage } = node.frontmatter;
 	const { sourceInstanceName, slug } = node.fields;
 
 	const MetaData = () => (
 		<div className="Metadata">
-			<span className="Author">{author}</span>
+			<span className="Author">{authors}</span>
 			&nbsp;
 			{DotSeparator}
 			&nbsp;

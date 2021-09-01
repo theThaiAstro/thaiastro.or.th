@@ -8,7 +8,7 @@
 | date          | ✓         | `YYYY-MM-DD`          | 1970-12-32                              |
 | categories    | ✓         | `[kebab-string]`      | [discovery, exo-planet]                 |
 | tags          | ✓         | `[kebab-string]`      | [jupiter, cassini]                      |
-| author        | ✓         | `[lowercase]`         | [author1, author2]                      |
+| authors       | ✓         | `[lowercase]`         | [author1, author2]                      |
 | featuredImage | ✗         | `file/kebab-path.ext` | jupiter/jupiter-from-cassini-2007.jpg   |
 | isFeatured    | ✗         | `boolean`             | false                                   |
 | isUnpublished | ✗         | `boolean`             | false                                   |

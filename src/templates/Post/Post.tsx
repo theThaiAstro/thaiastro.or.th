@@ -10,7 +10,7 @@ export const PostQuery = graphql`
 		mdx(id: { eq: $id }) {
 			body
 			frontmatter {
-				author
+				authors
 				categories
 				date
 				tags

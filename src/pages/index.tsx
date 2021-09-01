@@ -19,7 +19,7 @@ export const IndexQuery = graphql`
 					id
 					frontmatter {
 						date
-						author
+						authors
 						featuredImage {
 							childImageSharp {
 								gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
@@ -50,7 +50,7 @@ export const IndexQuery = graphql`
 						id
 						frontmatter {
 							date
-							author
+							authors
 							featuredImage {
 								childImageSharp {
 									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
@@ -82,7 +82,7 @@ export const IndexQuery = graphql`
 						id
 						frontmatter {
 							date
-							author
+							authors
 							featuredImage {
 								childImageSharp {
 									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)

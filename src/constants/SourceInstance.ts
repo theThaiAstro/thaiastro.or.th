@@ -1,5 +1,6 @@
 const SourceInstanceName = {
 	ARTICLES: 'articles',
+	AUTHORS: 'authors',
 	NEWS: 'news',
 	IMAGES: 'images',
 };
