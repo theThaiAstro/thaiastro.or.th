@@ -1,0 +1,24 @@
+@use '../../styles/colours';
+@use '../../styles/sizes';
+@use '../../styles/typography';
+@import '~include-media/dist/include-media';
+
+#GenericArchive {
+	display: flex;
+	justify-content: center;
+	margin-bottom: sizes.$XXXXXXL;
+}
+
+#GenericArchiveContent {
+	padding: sizes.$XL 0;
+	max-width: sizes.$maxSize;
+	width: 100%;
+
+	@include media('<tablet') {
+		padding: sizes.$XL sizes.$M;
+	}
+
+	& > .ArticleCard {
+		margin-top: sizes.$XXXL;
+	}
+}

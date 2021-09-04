@@ -1,23 +1,13 @@
-import cx from 'classnames';
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Typography from '../../components/Typography/Typography';
-import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
+import GenericArchive from '../../layout/GenericArchive/GenericArchive';
 
 const AuthorTemplate: React.FC<any> = ({ data }) => {
-	return (
-		<GlobalLayout>
-			<main>
-				<article>
-					<Typography type="heading" level={1}>
-						{JSON.stringify(data)}
-					</Typography>
-					{/* https://css-tricks.com/almanac/properties/l/line-clamp/ */}
-				</article>
-			</main>
-		</GlobalLayout>
-	);
+	const posts = data.allMdx.edges.map((e: any) => e.node);
+	const Header = () => <div>'Header'</div>;
+
+	return <GenericArchive Header={Header} posts={posts} />;
 };
 
 export default AuthorTemplate;
@@ -33,8 +23,19 @@ export const pageQuery = graphql`
 			edges {
 				node {
 					id
+					fields {
+						slug
+						sourceInstanceName
+					}
 					frontmatter {
 						authors
+						date
+						featuredImage {
+							childImageSharp {
+								gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+							}
+						}
+						isUnpublished
 						title
 					}
 					excerpt(pruneLength: 512)

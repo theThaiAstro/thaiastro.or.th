@@ -4,6 +4,8 @@
 
 @use './article-card';
 
+@import '~include-media/dist/include-media';
+
 .ArticleCardRatioDictator {
 	display: grid;
 	height: 100%;
@@ -31,5 +33,112 @@
 	.Title {
 		// @extend %heading-3;
 		@extend %heading-2--medium;
+	}
+}
+
+.FlexibleArticleCard {
+	// Changes to .class.class so that we don't have nested div
+	// ^ better? I think not
+
+	& > * {
+		display: none;
+	}
+
+	// prettier-ignore
+	& {
+		.Desktop { @include media('>=desktop') { display: block; } }
+		.Tablet { @include media('>=tablet', '<desktop') { display: block; } }
+		.Phone { @include media('<tablet') { display: block; } }
+	}
+
+	.Excerpt {
+		@extend %text;
+		font-size: typography.$font--M;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		margin-top: sizes.$S;
+	}
+
+	.FeaturedImage {
+		border-radius: sizes.$XXS;
+		overflow: hidden;
+	}
+
+	.Metadata {
+		@extend %text-small;
+	}
+
+	.SourceInstanceName {
+		@extend %text-extra;
+		color: colours.$primary-500;
+	}
+
+	.Title {
+		// @extend %heading-3;
+		@extend %heading-2--medium;
+	}
+
+	&--Full {
+		display: grid;
+		height: 100%;
+		position: relative;
+
+		& > * {
+			grid-area: 1/1;
+		}
+
+		.Badge {
+			position: absolute;
+			top: 1rem;
+			left: calc(#{sizes.$M} * -1);
+			z-index: 1;
+		}
+
+		.Metadata {
+			margin-top: sizes.$S;
+		}
+
+		.Title {
+			margin-top: sizes.$XXS;
+		}
+	}
+
+	&--Regular {
+		display: grid;
+		height: 100%;
+
+		& > * {
+			grid-area: 1/1;
+		}
+
+		.ArticleCardContent {
+			display: grid;
+			grid-template-areas: 'image text';
+			grid-template-columns: 12fr 24fr;
+
+			.FeaturedImage {
+				grid-area: image;
+
+				.FeaturedImageContainer {
+					height: 100%;
+				}
+			}
+
+			.Text {
+				grid-area: text;
+				padding-left: sizes.$L;
+			}
+		}
+
+		.Metadata,
+		.SourceInstanceName {
+			margin-top: sizes.$XXS;
+		}
+
+		.Title {
+			margin-top: sizes.$S;
+		}
 	}
 }

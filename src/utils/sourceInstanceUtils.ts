@@ -1,6 +1,6 @@
 import SourceInstanceName from '../constants/SourceInstance';
 
-export function getWordForSourceInstanceName(sourceInstanceName: keyof typeof SourceInstanceName) {
+export function getWordForSourceInstanceName(sourceInstanceName: keyof typeof SourceInstanceName | string) {
 	// prettier-ignore
 	switch (sourceInstanceName) {
 		case SourceInstanceName.ARTICLES: return 'บทความ';
