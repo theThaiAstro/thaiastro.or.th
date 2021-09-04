@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
@@ -26,17 +27,17 @@ const GenericArchive: React.FC<Props> = (props) => {
 						Something
 					</Typography>
 					{posts.map((p) => (
-						<FlexibleArticleCard
-							key={p.id}
-							className="ArticleCard"
-							authors={p.frontmatter.authors}
-							title={p.frontmatter.title}
-							sourceInstanceName={p.fields.sourceInstanceName}
-							featuredImage={getImage(p.frontmatter.featuredImage)}
-							date={p.frontmatter.date}
-							variant="regular"
-							excerpt={p.excerpt}
-						/>
+						<Link key={p.id} to={p.fields.slug} className="ArticleCard">
+							<FlexibleArticleCard
+								authors={p.frontmatter.authors}
+								title={p.frontmatter.title}
+								sourceInstanceName={p.fields.sourceInstanceName}
+								featuredImage={getImage(p.frontmatter.featuredImage)}
+								date={p.frontmatter.date}
+								variant="regular"
+								excerpt={p.excerpt}
+							/>
+						</Link>
 					))}
 				</article>
 			</main>

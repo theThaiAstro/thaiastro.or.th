@@ -1,3 +1,4 @@
+@use '../../styles/animations';
 @use '../../styles/colours';
 @use '../../styles/sizes';
 @use '../../styles/typography';
@@ -18,7 +19,18 @@
 		padding: sizes.$XL sizes.$M;
 	}
 
-	& > .ArticleCard {
+	.ArticleCard {
+		display: block;
 		margin-top: sizes.$XXXL;
+		text-decoration: none;
+		color: unset;
+
+		& .FlexibleArticleCard {
+			transition: all animations.$timing--normal;
+		}
+
+		&:hover .FlexibleArticleCard {
+			transform: scale(1.0625);
+		}
 	}
 }

@@ -17,7 +17,7 @@ export const pageQuery = graphql`
 		allMdx(
 			limit: 2000
 			sort: { fields: [frontmatter___date], order: DESC }
-			filter: { frontmatter: { authors: { in: [$author] } } }
+			filter: { frontmatter: { authors: { in: [$author] } }, fields: { sourceInstanceName: { ne: "authors" } } }
 		) {
 			totalCount
 			edges {
