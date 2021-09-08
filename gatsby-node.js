@@ -1,5 +1,5 @@
 const path = require('path');
-const { ARTICLES, AUTHORS, NEWS } = require('./src/constants/SourceInstance');
+const { ARTICLES, NEWS } = require('./src/constants/SourceInstance');
 
 exports.createPages = async function ({ actions, graphql, reporter }) {
 	const { data, errors } = await graphql(`
@@ -25,21 +25,8 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 
 	if (errors) reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
 
-	const postComponent = path.resolve('./src/templates/Post/Post.tsx');
 	const authorComponent = path.resolve('./src/templates/Author/Author.tsx');
-
-	data.everyMdx.nodes.forEach((node) => {
-		const { id, fields } = node;
-		const { slug, sourceInstanceName } = fields;
-
-		// TODO: Selectively resolve template based on the sourceInstanceName
-		// const component = sourceInstanceName === ARTICLES ?
-		actions.createPage({
-			path: slug,
-			component: postComponent,
-			context: { id },
-		});
-	});
+	const postComponent = path.resolve('./src/templates/Post/Post.tsx');
 
 	data.everyAuthor.nodes.forEach((author) => {
 		const { slug } = author.fields;
@@ -49,6 +36,19 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 			context: {
 				author: author.username,
 			},
+		});
+	});
+
+	data.everyMdx.nodes.forEach((node) => {
+		const { id, fields } = node;
+		const { slug } = fields;
+
+		// TODO: Selectively resolve template based on the sourceInstanceName
+		// const component = sourceInstanceName === ARTICLES ?
+		actions.createPage({
+			path: slug,
+			component: postComponent,
+			context: { id },
 		});
 	});
 };
@@ -135,7 +135,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 	function getNodeData(node) {
 		const dataBuilder = (path, sourceInstanceName) => ({ path, sourceInstanceName });
 
-		if (node.internal.type === 'Author') return dataBuilder(`authors/${node.username}`, AUTHORS);
+		if (node.internal.type === 'Author') return dataBuilder(`authors/${node.username}`, 'authors');
 		if (node.internal.type === 'Mdx') {
 			const { date, slug } = node?.frontmatter ?? {};
 			// TODO: Do we need only year?

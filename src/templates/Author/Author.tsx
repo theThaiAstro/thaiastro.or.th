@@ -1,17 +1,18 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Typography from '../../components/Typography/Typography';
+// import Typography from '../../components/Typography/Typography';
 import GenericArchive from '../../layout/GenericArchive/GenericArchive';
 import ArchivePost from '../../models/ArchivePost';
 
 const AuthorTemplate: React.FC<any> = ({ data }) => {
 	const posts = data.allMdx.nodes as ArchivePost[];
-	const Header = () => (
-		<Typography type="heading" level={1}>
-			Something
-		</Typography>
-	);
+	const Header = () => <></>;
+	//  (
+	// 	// <Typography type="heading" level={1}>
+	// 	// 	Something
+	// 	// </Typography>
+	// );
 
 	return <GenericArchive Header={Header} posts={posts} />;
 };

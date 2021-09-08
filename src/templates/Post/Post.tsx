@@ -9,8 +9,12 @@ export const PostQuery = graphql`
 	query PostQuery($id: String!) {
 		mdx(id: { eq: $id }) {
 			body
+			fields {
+				slug
+			}
 			frontmatter {
 				authors {
+					username
 					name {
 						th
 					}

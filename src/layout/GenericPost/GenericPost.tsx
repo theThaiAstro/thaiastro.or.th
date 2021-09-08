@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
@@ -7,7 +8,7 @@ import MDX from '../../components/MDX/MDX';
 import ShareButtons from '../../components/Share/ShareButtons';
 import Typography from '../../components/Typography/Typography';
 import { DotSeparator } from '../../constants/Separator';
-import { PostModel } from '../../models/PostModel';
+import { Mdx } from '../../models/Mdx';
 import { formatDate } from '../../utils/dateUtils';
 import GlobalLayout from '../GlobalLayout/GlobalLayout';
 
@@ -16,7 +17,7 @@ import './GenericPost.scss';
 
 export interface GenericPostProps {
 	data: {
-		mdx: PostModel;
+		mdx: Mdx;
 	};
 }
 
@@ -36,7 +37,21 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		return url;
 	})();
 
-	const AuthorDate = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย ${frontmatter.authors ?? ''}`;
+	const Authors = () => (
+		<>
+			{frontmatter.authors
+				? frontmatter.authors.map((a) => (
+						<Link to={`/authors/${a.username}`}>
+							<Typography type="text" variant="subextra">
+								{a.name.th}
+							</Typography>
+						</Link>
+				  ))
+				: 'สมาคมดาราศาสตร์ไทย'}
+		</>
+	);
+
+	const date = `${formatDate(frontmatter.date, 'short')} ${DotSeparator} โดย `;
 
 	const Metadata = () => {
 		const Categories = () => (
@@ -58,9 +73,12 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 				<Typography type="heading" level={1} className={styles.Title}>
 					{frontmatter.title}
 				</Typography>
-				<Typography type="text" variant="subextra" useDiv className={styles.Author}>
-					{AuthorDate}
-				</Typography>
+				<div className={styles.Author}>
+					<Typography type="text" variant="subextra">
+						{date}
+					</Typography>
+					<Authors />
+				</div>
 				<ShareButtons text={frontmatter.title} url={url} className={styles.ShareButtons} />
 			</GenericBlock>
 		);

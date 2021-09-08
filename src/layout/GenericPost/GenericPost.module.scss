@@ -21,6 +21,11 @@
 		@include media('<tablet') {
 			margin-top: sizes.$XL;
 		}
+
+		a {
+			color: colours.$primary-500;
+			text-decoration: none;
+		}
 	}
 
 	&.Content {
