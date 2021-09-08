@@ -1,9 +1,8 @@
 import { Fields } from './Fields';
 import { Frontmatter } from './Frontmatter';
 
-export default interface ArchivePost {
+export interface Mdx {
 	id: string;
-	fields: Fields;
-	excerpt: string;
 	frontmatter: Frontmatter;
+	fields: Fields;
 }

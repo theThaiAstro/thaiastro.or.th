@@ -4,41 +4,35 @@ import * as React from 'react';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import Typography from '../../components/Typography/Typography';
 import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
-import { GraphQLResult, Node } from '../../models/PostModel';
+import { Mdx } from '../../models/Mdx';
+
 import './IndexView.scss';
 
-type GraphQLFileResult = {
-	edges: { node: { childMdx: Node } }[];
-};
-
 export interface IndexViewProps {
-	data: {
-		// featuredPost: GraphQLResult;
-		latestStories: GraphQLResult;
-		news: GraphQLFileResult;
-		articles: GraphQLFileResult;
-	};
+	latestStories: Mdx[];
+	news: Mdx[];
+	articles: Mdx[];
 }
 
-const IndexView: React.FC<IndexViewProps> = ({ data }) => {
+const IndexView: React.FC<IndexViewProps> = (props) => {
 	// const { edges: featuredPosts } = data.featuredPost;
 
-	const latestStories = data?.latestStories?.edges ?? [];
-	const latestNews = data?.news?.edges ?? [];
-	const latestArticles = data?.articles?.edges ?? [];
+	const latestStories = props?.latestStories;
+	const latestNews = props?.news;
+	const latestArticles = props?.articles;
 
-	const alreadyShownStoriesIds = latestStories.map(({ node }) => node.id);
+	const alreadyShownStoriesIds = latestStories.map(({ id }) => id);
+
+	const hasNotBeenShown = ({ id }: Mdx) => !alreadyShownStoriesIds.includes(id);
+	const firstFive = (_: any, i: number) => i < 5;
+	const toArticleCard = (node: Mdx) => (
+		<Link key={node.id} className="ArticleLink" to={node.fields.slug}>
+			<ArticleCard node={node} />
+		</Link>
+	);
 
 	const LatestStoriesSection = () => {
-		return (
-			<section className="LatestStories">
-				{latestStories.map(({ node }) => (
-					<Link key={node.id} className="ArticleLink" to={node.fields.slug}>
-						<ArticleCard node={node} />
-					</Link>
-				))}
-			</section>
-		);
+		return <section className="LatestStories">{latestStories.map(toArticleCard)}</section>;
 	};
 
 	const NewsSection = () => {
@@ -47,15 +41,7 @@ const IndexView: React.FC<IndexViewProps> = ({ data }) => {
 				<Typography type="heading" level={2} className="Heading">
 					ข่าว
 				</Typography>
-				<div className="News">
-					{latestNews
-						.filter(({ node }) => !alreadyShownStoriesIds.includes(node.childMdx.id))
-						.map(({ node }) => (
-							<Link key={node.childMdx.id} className="ArticleLink" to={node.childMdx.fields.slug}>
-								<ArticleCard node={node.childMdx} />
-							</Link>
-						))}
-				</div>
+				<div className="News">{latestNews.filter(hasNotBeenShown).filter(firstFive).map(toArticleCard)}</div>
 			</section>
 		);
 	};
@@ -67,13 +53,7 @@ const IndexView: React.FC<IndexViewProps> = ({ data }) => {
 					บทความ
 				</Typography>
 				<div className="Articles">
-					{latestArticles
-						.filter(({ node }) => !alreadyShownStoriesIds.includes(node.childMdx.id))
-						.map(({ node }) => (
-							<Link key={node.childMdx.id} className="ArticleLink" to={node.childMdx.fields.slug}>
-								<ArticleCard node={node.childMdx} />
-							</Link>
-						))}
+					{latestArticles.filter(hasNotBeenShown).filter(firstFive).map(toArticleCard)}
 				</div>
 			</section>
 		);

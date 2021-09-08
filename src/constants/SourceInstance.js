@@ -1,6 +1,6 @@
 module.exports = {
 	ARTICLES: 'articles',
-	AUTHORS: 'authors',
+	DATA: 'data',
 	NEWS: 'news',
 	IMAGES: 'images',
 };

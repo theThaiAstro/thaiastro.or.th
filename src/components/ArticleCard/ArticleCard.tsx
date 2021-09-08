@@ -3,7 +3,8 @@ import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 import { DotSeparator } from '../../constants/Separator';
-import { Node } from '../../models/PostModel';
+import { Author } from '../../models/Author';
+import { Mdx } from '../../models/Mdx';
 import { formatDate } from '../../utils/dateUtils';
 import { getWordForSourceInstanceName } from '../../utils/sourceInstanceUtils';
 import Badge from '../Badge/Badge';
@@ -11,7 +12,7 @@ import Badge from '../Badge/Badge';
 import './ArticleCard.scss';
 
 type Props = {
-	node: Node;
+	node: Mdx;
 	variant?: 'highlight' | 'vertical' | 'normal' | 'compact' | 'text';
 	dictatorClassName?: string;
 	className?: string;
@@ -23,7 +24,7 @@ const ArticleCard: React.FC<Props> = ({ className, dictatorClassName, node, vari
 
 	const MetaData = () => (
 		<div className="Metadata">
-			<span className="Author">{authors}</span>
+			<span className="Author">{authors?.[0]?.name.th ?? 'สมาคมดาราศาสตร์ไทย'}</span>
 			&nbsp;
 			{DotSeparator}
 			&nbsp;
@@ -74,12 +75,12 @@ const ArticleCard: React.FC<Props> = ({ className, dictatorClassName, node, vari
 type Variant = 'full' | 'regular' | 'compact' | 'text';
 
 type FlexibleArticleCardProps = {
-	authors: string[];
+	authors: Author[];
 	className?: string;
 	date: Date;
 	excerpt?: string;
 	featuredImage?: any;
-	sourceInstanceName: Node['fields']['sourceInstanceName'] | string;
+	sourceInstanceName: Mdx['fields']['sourceInstanceName'];
 	title: string;
 	variant: Variant;
 	desktop?: Variant;
@@ -99,7 +100,7 @@ const FlexibleArticleCard: React.FC<FlexibleArticleCardProps> = (props) => {
 
 	const MetaData = () => (
 		<div className="Metadata">
-			<span className="Author">{authors?.[0] ?? 'สมาคมดาราศาสตร์ไทย'}</span>
+			<span className="Author">{authors?.[0].name.th ?? 'สมาคมดาราศาสตร์ไทย'}</span>
 			&nbsp;
 			{DotSeparator}
 			&nbsp;

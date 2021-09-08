@@ -1,9 +1,29 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import { Mdx } from '../models/Mdx';
+
 import IndexView from './Index/IndexView';
 
-const Index = ({ data }: any) => <IndexView data={data} />;
+type Node = {
+	nodes: Mdx[];
+};
+
+type Props = {
+	data: {
+		latestStories: Node;
+		news: Node;
+		articles: Node;
+	};
+};
+
+const Index: React.FC<Props> = ({ data }) => (
+	<IndexView
+		latestStories={data?.latestStories?.nodes ?? []}
+		articles={data?.articles?.nodes ?? []}
+		news={data?.news?.nodes ?? []}
+	/>
+);
 
 export default Index;
 
@@ -14,89 +34,91 @@ export const IndexQuery = graphql`
 			limit: 5
 			filter: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } }
 		) {
-			edges {
-				node {
-					id
-					frontmatter {
-						date
-						authors
-						featuredImage {
-							childImageSharp {
-								gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-							}
+			nodes {
+				id
+				frontmatter {
+					date
+					authors {
+						name {
+							th
 						}
-						isFeatured
-						isUnpublished
-						title
 					}
-					fields {
-						slug
-						sourceInstanceName
+					featuredImage {
+						childImageSharp {
+							gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+						}
 					}
+					isFeatured
+					isUnpublished
+					title
+				}
+				fields {
+					slug
+					sourceInstanceName
 				}
 			}
 		}
-		news: allFile(
-			filter: {
-				sourceInstanceName: { eq: "news" }
-				childrenMdx: { elemMatch: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } } }
-			}
+		news: allMdx(
+			sort: { order: DESC, fields: frontmatter___date }
 			limit: 10
-			sort: { order: DESC, fields: childMdx___frontmatter___date }
+			filter: {
+				frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } }
+				fields: { sourceInstanceName: { eq: "news" } }
+			}
 		) {
-			edges {
-				node {
-					childMdx {
-						id
-						frontmatter {
-							date
-							authors
-							featuredImage {
-								childImageSharp {
-									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-								}
-							}
-							isFeatured
-							isUnpublished
-							title
-						}
-						fields {
-							slug
-							sourceInstanceName
+			nodes {
+				id
+				frontmatter {
+					date
+					authors {
+						name {
+							th
 						}
 					}
+					featuredImage {
+						childImageSharp {
+							gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+						}
+					}
+					isFeatured
+					isUnpublished
+					title
+				}
+				fields {
+					slug
+					sourceInstanceName
 				}
 			}
 		}
-		articles: allFile(
-			filter: {
-				sourceInstanceName: { eq: "articles" }
-				childrenMdx: { elemMatch: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } } }
-			}
+		articles: allMdx(
+			sort: { order: DESC, fields: frontmatter___date }
 			limit: 10
-			sort: { order: DESC, fields: childMdx___frontmatter___date }
+			filter: {
+				frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } }
+				fields: { sourceInstanceName: { eq: "articles" } }
+			}
 		) {
-			edges {
-				node {
-					childMdx {
-						id
-						frontmatter {
-							date
-							authors
-							featuredImage {
-								childImageSharp {
-									gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-								}
-							}
-							isFeatured
-							isUnpublished
-							title
-						}
-						fields {
-							slug
-							sourceInstanceName
+			nodes {
+				id
+				frontmatter {
+					date
+					authors {
+						name {
+							th
 						}
 					}
+					featuredImage {
+						childImageSharp {
+							gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+						}
+					}
+					isFeatured
+					isUnpublished
+					title
+				}
+				fields {
+					slug
+					sourceInstanceName
 				}
 			}
 		}

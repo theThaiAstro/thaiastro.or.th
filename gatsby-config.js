@@ -1,4 +1,5 @@
-const { ARTICLES, AUTHORS, IMAGES, NEWS } = require('./src/constants/SourceInstance');
+const { ARTICLES, DATA, IMAGES, NEWS } = require('./src/constants/SourceInstance');
+const camelCase = require('camelcase');
 
 module.exports = {
 	pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/thaiastro.or.th',
@@ -31,13 +32,22 @@ module.exports = {
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {
-				name: AUTHORS,
-				path: `${__dirname}/src/content/${AUTHORS}`,
+				name: DATA,
+				path: `${__dirname}/src/data`,
 			},
 		},
 		'gatsby-plugin-image',
 		'gatsby-plugin-sass',
 		'gatsby-remark-images',
+		{
+			resolve: `gatsby-transformer-json`,
+			options: {
+				typeName: ({ node, object, isArray }) => {
+					if (node.sourceInstanceName === DATA) return camelCase(node.name, { pascalCase: true });
+					return camelCase(node.name) + 'Json';
+				},
+			},
+		},
 		'gatsby-transformer-sharp',
 		{
 			resolve: 'gatsby-plugin-mdx',
