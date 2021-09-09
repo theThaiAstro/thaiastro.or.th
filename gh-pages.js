@@ -7,10 +7,11 @@ console.log('Starting to publish GitHub Pages');
 ghpages.publish(
 	distPath,
 	(res) => {
+		console.log('Done');
 		console.log(res);
 	},
 	(err) => {
 		if (err) console.error('ghpages failed', err);
-		else console.log('ghpages successfully deployed');
+		else console.log('no err provided, please check the status manually');
 	}
 );

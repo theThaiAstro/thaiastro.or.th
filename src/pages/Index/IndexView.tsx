@@ -17,9 +17,9 @@ export interface IndexViewProps {
 const IndexView: React.FC<IndexViewProps> = (props) => {
 	// const { edges: featuredPosts } = data.featuredPost;
 
-	const latestStories = props?.latestStories;
-	const latestNews = props?.news;
-	const latestArticles = props?.articles;
+	const latestStories = props?.latestStories ?? [];
+	const latestNews = props?.news ?? [];
+	const latestArticles = props?.articles ?? [];
 
 	const alreadyShownStoriesIds = latestStories.map(({ id }) => id);
 

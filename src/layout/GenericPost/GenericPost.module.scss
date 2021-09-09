@@ -25,6 +25,11 @@
 		a {
 			color: colours.$primary-500;
 			text-decoration: none;
+
+			&:hover {
+				color: colours.$primary-700;
+				text-decoration: underline dotted colours.$primary-700;
+			}
 		}
 	}
 

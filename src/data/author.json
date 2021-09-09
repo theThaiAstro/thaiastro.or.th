@@ -8,6 +8,14 @@
         "bio": "this is thammarith's bio"
     },
     {
+        "username": "visanu",
+        "name": {
+            "th": "วิษณุ เอื้อชูเกียรติ",
+            "en": "Visanu E"
+        },
+        "bio": "this is visanu's bio"
+    },
+    {
         "username": "thomas",
         "name": {
             "th": "โธมัส รีธ",

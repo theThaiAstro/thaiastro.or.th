@@ -2,11 +2,17 @@
 @use '../../styles/sizes';
 @use '../../styles/typography';
 
+@import '~include-media/dist/include-media';
+
 #Footer {
 	background-color: colours.$primary-900;
 	display: flex;
 	justify-content: center;
-	padding: sizes.$XXXXXL 0;
+	padding: sizes.$XXXXXL 0 sizes.$XXXXXXL;
+
+	@include media('<desktop') {
+		padding: sizes.$XXXXXL sizes.$XXL sizes.$XXXXXXL;
+	}
 }
 
 #FooterJustifier {

@@ -30,22 +30,24 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		<section className={cx(styles.GenericBlock, className)}>{children}</section>
 	);
 
-	const url = (() => {
-		const url = window.location.href;
-		// prettier-ignore
-		if (!url.includes('thaiastro.nectec.or.th') || !url.includes('thaiastro.or.th')) return `https://thaiastro.or.th${window.location.pathname}`;
-		return url;
-	})();
+	const url = `https://thaiastro.nectec.or.th${mdx.fields.slug}`;
 
 	const Authors = () => (
 		<>
-			{frontmatter.authors
-				? frontmatter.authors.map((a) => (
-						<Link to={`/authors/${a.username}`}>
-							<Typography type="text" variant="subextra">
-								{a.name.th}
-							</Typography>
-						</Link>
+			{frontmatter.authors?.length
+				? frontmatter.authors.map((a, i, arr) => (
+						<>
+							<Link to={`/authors/${a.username}`} key={a.username}>
+								<Typography type="text" variant="subextra">
+									{a.name.th}
+								</Typography>
+							</Link>
+							{i < arr.length - 1 && (
+								<Typography type="text" variant="subextra">
+									,&nbsp;
+								</Typography>
+							)}
+						</>
 				  ))
 				: 'สมาคมดาราศาสตร์ไทย'}
 		</>
