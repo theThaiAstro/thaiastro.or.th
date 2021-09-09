@@ -1,13 +1,18 @@
+@use '../../../styles/colours';
 @use '../../../styles/sizes';
 @import 'node_modules/include-media/dist/include-media';
 
 #NavigationBar {
-	background: var(--grey-900);
+	background: colours.$grey-900;
 	display: flex;
 	height: 3.5rem;
 	justify-content: center;
 	margin-bottom: 1rem;
 	width: 100%;
+
+	img {
+		width: 100%;
+	}
 }
 
 #NavigationBar.NoDefaultMargin {
@@ -15,10 +20,14 @@
 }
 
 #NavigationBarLogoContainer {
-	background: var(--primary-500);
+	background: colours.$primary-500;
 	padding: 0.75rem;
 	height: 4.5rem;
 	width: 4.5rem;
+
+	&:hover {
+		background: colours.$primary-700;
+	}
 }
 
 #LogoJustifier {

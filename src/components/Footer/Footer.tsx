@@ -1,22 +1,15 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 
-import './Footer.scss';
+import Logo from '../../assets/images/padded-logo.png';
 
-const LogoPath = '../../assets/images/padded-logo.png';
+import './Footer.scss';
 
 const Footer: React.FC = () => {
 	const FooterLogo = () => (
 		<div id="FooterBrand">
 			<div id="FooterLogoContainer">
-				<StaticImage
-					alt="สมาคมดาราศาสตร์ไทย"
-					layout="fullWidth"
-					quality={100}
-					loading="eager"
-					placeholder="blurred"
-					src={LogoPath}
-				/>
+				<img id="FooterLogo" src={Logo} alt="สมาคมดาราศาสตร์ไทย" />
 			</div>
 			<div id="FooterBrandName">
 				<div id="FooterBrandName--TH">สมาคมดาราศาสตร์ไทย</div>
