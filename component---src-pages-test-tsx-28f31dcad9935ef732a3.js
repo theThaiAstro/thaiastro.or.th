@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkthe_thai_astronomical_society=self.webpackChunkthe_thai_astronomical_society||[]).push([[633],{5294:function(t,e,a){a.r(e);var s=a(7294),c=a(2661);e.default=function(){return s.createElement(s.Fragment,null,"This is test",s.createElement(c.Z,{url:"https://www.youtube.com/watch?v=ysz5S6PUM-U"}))}}}]);
+//# sourceMappingURL=component---src-pages-test-tsx-28f31dcad9935ef732a3.js.map
