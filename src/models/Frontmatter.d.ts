@@ -1,9 +1,11 @@
 import { Author } from './Author';
+import { Category } from './Category';
+import { Tag } from './Tag';
 
 export interface Frontmatter {
 	authors?: Author[];
-	categories: string[];
-	tags: string[];
+	categories: Category[];
+	tags: Tag[];
 	date: Date;
 	featuredImage: any;
 	isFeatured?: boolean;

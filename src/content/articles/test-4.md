@@ -1,8 +1,8 @@
 ---
 title: พบจานกำเนิดดวงจันทร์ ต่างระบบ แต่ต้องตะลึง4
 date: 2019-01-29
-categories: [การสำรวจอวกาศ, ปรากฏการณ์]
-tags: [ทดสอบ 1, ทดสอบ 2, ทดสอบ3]
+categories: [space-exploration, phenomena]
+tags: [jupiter, saturn]
 authors: [thammarith]
 featuredImage: bridge.jpg
 ---

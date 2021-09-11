@@ -21,16 +21,6 @@
 		@include media('<tablet') {
 			margin-top: sizes.$XL;
 		}
-
-		a {
-			color: colours.$primary-500;
-			text-decoration: none;
-
-			&:hover {
-				color: colours.$primary-700;
-				text-decoration: underline dotted colours.$primary-700;
-			}
-		}
 	}
 
 	&.Content {
@@ -56,13 +46,32 @@
 	&.Extra {
 		padding-top: 0;
 	}
+
+	a {
+		color: colours.$primary-500;
+		text-decoration: none;
+
+		&:hover {
+			color: colours.$primary-700;
+			text-decoration: underline dotted colours.$primary-700;
+		}
+	}
 }
 
 .Author {
 	margin-top: sizes.$M;
+
+	ul {
+		display: inline-block;
+
+		li::after {
+			@extend %text-extra--sub;
+		}
+	}
 }
 
 .Categories {
+	@extend %text-extra;
 	margin-top: sizes.$M;
 }
 
@@ -82,6 +91,18 @@
 
 .ShareButtonsSeconday {
 	margin-bottom: sizes.$XXL;
+}
+
+.Tags {
+	@extend %text-extra;
+
+	strong {
+		font-weight: typography.$semiBold;
+	}
+
+	ul {
+		display: inline-block;
+	}
 }
 
 h1.Title {

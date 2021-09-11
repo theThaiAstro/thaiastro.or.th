@@ -40,7 +40,16 @@ module.exports = {
 		'gatsby-plugin-sass',
 		'gatsby-remark-images',
 		{
-			resolve: `gatsby-transformer-json`,
+			resolve: 'gatsby-transformer-csv',
+			options: {
+				typeName: ({ node, object, isArray }) => {
+					if (node.sourceInstanceName === DATA) return camelCase(node.name, { pascalCase: true });
+					return camelCase(node.name) + 'Csv';
+				},
+			},
+		},
+		{
+			resolve: 'gatsby-transformer-json',
 			options: {
 				typeName: ({ node, object, isArray }) => {
 					if (node.sourceInstanceName === DATA) return camelCase(node.name, { pascalCase: true });

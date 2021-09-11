@@ -12,6 +12,12 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 					}
 				}
 			}
+			everyCategory: allMdx {
+				group(field: frontmatter___categories___category) {
+					category: fieldValue
+					totalCount
+				}
+			}
 			everyMdx: allMdx {
 				nodes {
 					id
@@ -20,12 +26,27 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 					}
 				}
 			}
+			everySourceInstance: allMdx {
+				group(field: fields___sourceInstanceName) {
+					sourceInstance: fieldValue
+					totalCount
+				}
+			}
+			everyTag: allMdx {
+				group(field: frontmatter___tags___tag) {
+					tag: fieldValue
+					totalCount
+				}
+			}
 		}
 	`);
 
 	if (errors) reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
 
+	const sourceInstanceComponent = path.resolve('./src/templates/SourceInstance/SourceInstance.tsx');
 	const authorComponent = path.resolve('./src/templates/Author/Author.tsx');
+	const categoryComponent = path.resolve('./src/templates/Category/Category.tsx');
+	const tagComponent = path.resolve('./src/templates/Tag/Tag.tsx');
 	const postComponent = path.resolve('./src/templates/Post/Post.tsx');
 
 	data.everyAuthor.nodes.forEach((author) => {
@@ -35,6 +56,36 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
 			component: authorComponent,
 			context: {
 				author: author.username,
+			},
+		});
+	});
+
+	data.everyCategory.group.forEach((category) => {
+		actions.createPage({
+			path: `/categories/${category.category}`,
+			component: categoryComponent,
+			context: {
+				category: category.category,
+			},
+		});
+	});
+
+	data.everyTag.group.forEach((tag) => {
+		actions.createPage({
+			path: `/tag/${tag.tag}`,
+			component: tagComponent,
+			context: {
+				tag: tag.tag,
+			},
+		});
+	});
+
+	data.everySourceInstance.group.forEach((sourceInstance) => {
+		actions.createPage({
+			path: `/${sourceInstance.sourceInstance}`,
+			component: sourceInstanceComponent,
+			context: {
+				sourceInstanceName: sourceInstance.sourceInstance,
 			},
 		});
 	});
@@ -90,8 +141,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 		type Frontmatter @dontInfer {
 			title: String!
 			date: Date
-			categories: [String]
-			tags: [String]
+			categories: [Category] @link(by: "category")
+			tags: [Tag] @link(by: "tag")
 			authors: [Author] @link(by: "username")
 			featuredImage: File @fileByImagesPath
 			isFeatured: Boolean
@@ -109,13 +160,27 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 			th: String!
 			en: String!
 		}
+
+		type Category implements Node {
+			category: String!
+			name_th: String!
+			name_en: String!
+			description: String
+		}
+
+		type Tag implements Node {
+			tag: String!
+			name_th: String!
+			name_en: String!
+			description: String
+		}
 	`);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions;
 
-	const toCreateNodeTypes = ['Author', 'Mdx'];
+	const toCreateNodeTypes = ['Author', 'Category', 'Mdx', 'Tag'];
 	if (!toCreateNodeTypes.includes(node.internal.type)) return;
 
 	const { path, sourceInstanceName } = getNodeData(node);
@@ -136,6 +201,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		const dataBuilder = (path, sourceInstanceName) => ({ path, sourceInstanceName });
 
 		if (node.internal.type === 'Author') return dataBuilder(`authors/${node.username}`, 'authors');
+		if (node.internal.type === 'Category') return dataBuilder(`categories/${node.category}`, 'categories');
+		if (node.internal.type === 'Tag') return dataBuilder(`tags/${node.tag}`, 'tags');
 		if (node.internal.type === 'Mdx') {
 			const { date, slug } = node?.frontmatter ?? {};
 			// TODO: Do we need only year?
@@ -147,7 +214,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 				if (slug) return slug;
 				if (sourceInstanceName === ARTICLES) return name;
 				if (sourceInstanceName === NEWS) return `${datePath}/${name}`;
-				return '';
+				return name;
 			})();
 
 			return dataBuilder(`${sourceInstanceName}/${suffix}`, sourceInstanceName);

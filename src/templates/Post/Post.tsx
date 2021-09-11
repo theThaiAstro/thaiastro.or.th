@@ -11,17 +11,33 @@ export const PostQuery = graphql`
 			body
 			fields {
 				slug
+				sourceInstanceName
 			}
 			frontmatter {
 				authors {
+					fields {
+						slug
+					}
 					username
 					name {
 						th
 					}
 				}
-				categories
+				categories {
+					fields {
+						slug
+					}
+					category
+					name_th
+				}
 				date
-				tags
+				tags {
+					fields {
+						slug
+					}
+					tag
+					name_th
+				}
 				title
 				featuredImage {
 					childImageSharp {

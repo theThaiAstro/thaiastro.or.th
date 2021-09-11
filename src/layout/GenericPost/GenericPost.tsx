@@ -10,6 +10,7 @@ import Typography from '../../components/Typography/Typography';
 import { DotSeparator } from '../../constants/Separator';
 import { Mdx } from '../../models/Mdx';
 import { formatDate } from '../../utils/dateUtils';
+import { getWordForSourceInstanceName } from '../../utils/sourceInstanceUtils';
 import GlobalLayout from '../GlobalLayout/GlobalLayout';
 
 import * as styles from './GenericPost.module.scss';
@@ -23,7 +24,7 @@ export interface GenericPostProps {
 
 const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 	const { mdx } = data;
-	const { frontmatter } = mdx;
+	const { fields, frontmatter } = mdx;
 	const featuredImage = getImage(frontmatter.featuredImage);
 
 	const GenericBlock: React.FC<{ className?: string }> = ({ className, children }) => (
@@ -34,22 +35,21 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 
 	const Authors = () => (
 		<>
-			{frontmatter.authors?.length
-				? frontmatter.authors.map((a, i, arr) => (
-						<>
-							<Link to={`/authors/${a.username}`} key={a.username}>
+			{frontmatter.authors?.length ? (
+				<ul className={cx('List--OneLine')}>
+					{frontmatter.authors.map((a) => (
+						<li>
+							<Link to={a.fields.slug} key={a.username}>
 								<Typography type="text" variant="subextra">
 									{a.name.th}
 								</Typography>
 							</Link>
-							{i < arr.length - 1 && (
-								<Typography type="text" variant="subextra">
-									,&nbsp;
-								</Typography>
-							)}
-						</>
-				  ))
-				: 'สมาคมดาราศาสตร์ไทย'}
+						</li>
+					))}
+				</ul>
+			) : (
+				'สมาคมดาราศาสตร์ไทย'
+			)}
 		</>
 	);
 
@@ -59,10 +59,8 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		const Categories = () => (
 			<ul className={cx('List--OneLine', styles.Categories)}>
 				{frontmatter.categories!.map((c) => (
-					<li key={c}>
-						<Typography type="text" variant="extra">
-							{c}
-						</Typography>
+					<li key={c.category}>
+						<Link to={c.fields.slug}>{c.name_th}</Link>
 					</li>
 				))}
 			</ul>
@@ -70,7 +68,9 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 
 		return (
 			<GenericBlock className={styles.Metadata}>
-				<Badge text="บทความ" />
+				<Link to={`/${fields.sourceInstanceName}`}>
+					<Badge text={getWordForSourceInstanceName(fields.sourceInstanceName)} />
+				</Link>
 				{frontmatter.categories && <Categories />}
 				<Typography type="heading" level={1} className={styles.Title}>
 					{frontmatter.title}
@@ -96,16 +96,16 @@ const GenericPost: React.FC<GenericPostProps> = ({ data }) => {
 		const Tags = () => (
 			<div>
 				<ShareButtons text={frontmatter.title} url={url} className={styles.ShareButtonsSeconday} />
-				{/* <ul className={cx('List--OneLine', styles.Tags)}> */}
-				<ul className={cx('List--OneLine')}>
-					{frontmatter.tags!.map((t) => (
-						<li key={t}>
-							<Typography type="text" variant="extra">
-								{t}
-							</Typography>
-						</li>
-					))}
-				</ul>
+				<div className={styles.Tags}>
+					<strong>เรื่องที่เกี่ยวข้อง:&nbsp;</strong>
+					<ul className={cx('List--OneLine')}>
+						{frontmatter.tags!.map((t) => (
+							<li key={t.tag}>
+								<Link to={t.fields.slug}>{t.name_th}</Link>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		);
 
