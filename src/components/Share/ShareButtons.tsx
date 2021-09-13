@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import React from 'react';
 
+import { faLine } from '../../assets/icons/faLine';
+
 import './ShareButtons.scss';
 
 type Props = {
@@ -28,6 +30,8 @@ const ShareButtons: React.FC<Props> = (props) => {
 
 	const sharingUrl = props.url ?? 'https://thaiastro.nectec.or.th';
 	const sharingText = props.text ?? 'สมาคมดาราศาสตร์ไทย';
+	const encodedText = encodeURIComponent(sharingText);
+	const encodedSpace = encodeURIComponent(' ');
 	const encodedUrl = encodeURIComponent(sharingUrl);
 
 	const onShareClick = (url: string) => {
@@ -39,7 +43,8 @@ const ShareButtons: React.FC<Props> = (props) => {
 	};
 
 	const facebookUrl = `https://facebook.com/sharer.php?u=${encodedUrl}`;
-	const twitterUrl = `https://twitter.com/intent/tweet?text=${sharingText}NEW_LINENEW_LINE${encodedUrl}`;
+	const lineUrl = `https://line.me/R/msg/text/?${encodedText}${encodedSpace}${encodedUrl}`;
+	const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedText}NEW_LINENEW_LINE${encodedUrl}`;
 
 	const Icons = [
 		<Icon
@@ -56,6 +61,13 @@ const ShareButtons: React.FC<Props> = (props) => {
 			key="Twitter"
 			title="ทวีตบทความนี้"
 			onClick={() => onShareClick(twitterUrl)}
+		/>,
+		<Icon
+			social="Line"
+			icon={faLine}
+			key="Line"
+			title="ส่งต่อบทความนี้ทางไลน์"
+			onClick={() => onShareClick(lineUrl)}
 		/>,
 		<Icon social="Link" icon={faLink} key="Link" title="คลิกเพื่อคัดลอกลิงก์" onClick={() => onCopy(sharingUrl)} />,
 		// <Icon social="Email" icon={faEnvelope} key="Email" onClick={() => onShareClick()} />,

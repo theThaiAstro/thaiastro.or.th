@@ -66,6 +66,10 @@
 			@include onHover(colours.$Facebook);
 		}
 
+		&.Line {
+			@include onHover(colours.$Line);
+		}
+
 		&.Link {
 			@include onHover(colours.$primary-500);
 		}
