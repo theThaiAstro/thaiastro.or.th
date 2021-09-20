@@ -82,5 +82,9 @@
 		&.Twitter {
 			@include onHover(colours.$Twitter);
 		}
+
+		&.WhatsApp {
+			@include onHover(colours.$WhatsApp);
+		}
 	}
 }

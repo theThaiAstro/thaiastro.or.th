@@ -1,4 +1,4 @@
-import { faFacebookF, faTwitter, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faTwitter, faWhatsapp, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faLink, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
@@ -45,6 +45,7 @@ const ShareButtons: React.FC<Props> = (props) => {
 	const facebookUrl = `https://facebook.com/sharer.php?u=${encodedUrl}`;
 	const lineUrl = `https://line.me/R/msg/text/?${encodedText}${encodedSpace}${encodedUrl}`;
 	const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedText}NEW_LINENEW_LINE${encodedUrl}`;
+	const whatsAppUrl = `https://api.whatsapp.com/send/?phone&text=${encodedText}${encodedSpace}${encodedUrl}`;
 
 	const Icons = [
 		<Icon
@@ -68,6 +69,13 @@ const ShareButtons: React.FC<Props> = (props) => {
 			key="Line"
 			title="ส่งต่อบทความนี้ทางไลน์"
 			onClick={() => onShareClick(lineUrl)}
+		/>,
+		<Icon
+			social="WhatsApp"
+			icon={faWhatsapp}
+			key="WhatsApp"
+			title="ส่งต่อบทความนี้ทาง WhatsApp"
+			onClick={() => onShareClick(whatsAppUrl)}
 		/>,
 		<Icon social="Link" icon={faLink} key="Link" title="คลิกเพื่อคัดลอกลิงก์" onClick={() => onCopy(sharingUrl)} />,
 		// <Icon social="Email" icon={faEnvelope} key="Email" onClick={() => onShareClick()} />,
