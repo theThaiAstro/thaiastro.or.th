@@ -27,7 +27,7 @@ const GenericArchive: React.FC<Props> = (props) => {
 								authors={p.frontmatter.authors!}
 								title={p.frontmatter.title}
 								sourceInstanceName={p.fields.sourceInstanceName}
-								featuredImage={getImage(p.frontmatter.featuredImage)}
+								featuredImage={p.frontmatter.featuredImage}
 								date={p.frontmatter.date}
 								variant="regular"
 								excerpt={p.excerpt}

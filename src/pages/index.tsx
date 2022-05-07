@@ -31,7 +31,7 @@ export const IndexQuery = graphql`
 	query IndexQuery {
 		latestStories: allMdx(
 			sort: { order: DESC, fields: frontmatter___date }
-			limit: 5
+			limit: 6
 			filter: { frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } } }
 		) {
 			nodes {
@@ -60,7 +60,7 @@ export const IndexQuery = graphql`
 		}
 		news: allMdx(
 			sort: { order: DESC, fields: frontmatter___date }
-			limit: 10
+			limit: 12
 			filter: {
 				frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } }
 				fields: { sourceInstanceName: { eq: "news" } }
@@ -92,7 +92,7 @@ export const IndexQuery = graphql`
 		}
 		articles: allMdx(
 			sort: { order: DESC, fields: frontmatter___date }
-			limit: 10
+			limit: 12
 			filter: {
 				frontmatter: { isFeatured: { ne: true }, isUnpublished: { ne: true } }
 				fields: { sourceInstanceName: { eq: "articles" } }

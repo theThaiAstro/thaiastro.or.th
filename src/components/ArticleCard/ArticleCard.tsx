@@ -75,7 +75,7 @@ const ArticleCard: React.FC<Props> = ({ className, dictatorClassName, node, vari
 type Variant = 'full' | 'regular' | 'compact' | 'text';
 
 type FlexibleArticleCardProps = {
-	authors: Author[];
+	authors?: Author[];
 	className?: string;
 	date: Date;
 	excerpt?: string;
@@ -93,6 +93,7 @@ const FlexibleArticleCard: React.FC<FlexibleArticleCardProps> = (props) => {
 	const ultraWideRatio = '1618 250';
 
 	const { authors, className, date, excerpt, featuredImage, sourceInstanceName, title } = props;
+	const _featuredImage = getImage(featuredImage);
 
 	const SvgDictator = ({ ratio }: { ratio: string }) => <svg viewBox={`0 0 ${ratio}`}></svg>;
 
@@ -110,8 +111,8 @@ const FlexibleArticleCard: React.FC<FlexibleArticleCardProps> = (props) => {
 
 	const FeatureImage = () => (
 		<div className="FeaturedImage">
-			{featuredImage ? (
-				<GatsbyImage className="FeaturedImageContainer" alt={title} image={featuredImage} />
+			{_featuredImage ? (
+				<GatsbyImage className="FeaturedImageContainer" alt={title} image={_featuredImage} />
 			) : (
 				<StaticImage
 					className="FeaturedImageContainer"
@@ -130,7 +131,7 @@ const FlexibleArticleCard: React.FC<FlexibleArticleCardProps> = (props) => {
 
 	const VariantFull = () => (
 		<div className="FlexibleArticleCard--Full">
-			<SvgDictator ratio={ultraWideRatio} />
+			<SvgDictator ratio="1618 250" />
 			<div className="ArticleCardContent">
 				<Badge className="Badge" text={getWordForSourceInstanceName(sourceInstanceName)!} />
 				<FeatureImage />

@@ -1,7 +1,8 @@
 import { Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
-import ArticleCard from '../../components/ArticleCard/ArticleCard';
+import ArticleCard, { FlexibleArticleCard } from '../../components/ArticleCard/ArticleCard';
 import Typography from '../../components/Typography/Typography';
 import GlobalLayout from '../../layout/GlobalLayout/GlobalLayout';
 import { Mdx } from '../../models/Mdx';
@@ -32,7 +33,22 @@ const IndexView: React.FC<IndexViewProps> = (props) => {
 	);
 
 	const LatestStoriesSection = () => {
-		return <section className="LatestStories">{latestStories.map(toArticleCard)}</section>;
+		return (
+			<section className="LatestStories" style={{ marginTop: '6rem', padding: 0 }}>
+				{latestStories.map((a, i) => (
+					<FlexibleArticleCard
+						key={a.frontmatter.title}
+						variant={[3, 4, 5].includes(i) ? 'regular' : 'full'}
+						authors={a.frontmatter.authors}
+						date={a.frontmatter.date}
+						featuredImage={a.frontmatter.featuredImage}
+						title={a.frontmatter.title}
+						sourceInstanceName={a.fields.sourceInstanceName}
+					/>
+				))}
+			</section>
+		);
+		// return <section className="LatestStories">{latestStories.map(toArticleCard)}</section>;
 	};
 
 	const NewsSection = () => {
@@ -63,8 +79,8 @@ const IndexView: React.FC<IndexViewProps> = (props) => {
 		<GlobalLayout noDefaultMargin>
 			<main id="MainPage">
 				<LatestStoriesSection />
-				<NewsSection />
-				<ArticlesSection />
+				{/* <NewsSection />
+				<ArticlesSection /> */}
 			</main>
 		</GlobalLayout>
 	);
