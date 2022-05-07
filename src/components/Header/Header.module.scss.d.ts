@@ -1,1 +1,0 @@
-export const SiteHeader: string;
