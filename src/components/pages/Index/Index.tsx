@@ -1,10 +1,8 @@
 import React from 'react';
 
 import { GenericBlock } from '@constants/classNames';
-import directus from '@lib/directus';
 
 const Index: React.FC = () => {
-	console.log(directus)	
 
 	return (
 		<>
