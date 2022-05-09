@@ -17,9 +17,11 @@
 		"incremental": true,
 		"paths": {
 			"@assets/*": ["src/assets/*"],
-			"@constants/*": ["src/constants/*"],
 			"@components/*": ["src/components/*"],
+			"@constants/*": ["src/constants/*"],
+			"@data/*": ["src/data/*"],
 			"@helpers/*": ["src/helpers/*"],
+			"@interfaces/*": ["src/interfaces/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@lib/*": ["src/libs/*"],
 			"@styles/*": ["src/styles/*"]

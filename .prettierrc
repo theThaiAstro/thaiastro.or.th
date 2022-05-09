@@ -4,11 +4,18 @@
 	"semi": true,
 	"useTabs": true,
 	"singleQuote": true,
-	"printWidth": 120,
+	"printWidth": 160,
 	"importOrder": [
-		"^@core/(.*)$",
-		"^@server/(.*)$",
-		"^@ui/(.*)$",
+		"^@assets/(.*)$",
+		"^@components/(.*)$",
+		"^@constants/(.*)$",
+		"^@data/(.*)$",
+		"^@helpers/(.*)$",
+		"^@interfaces/(.*)$",
+		"^@layouts/(.*)$",
+		"^@lib/(.*)$",
+		"^@styles/(.*)$",
+
 		"^(../)",
 		"^(./)"
 	],
