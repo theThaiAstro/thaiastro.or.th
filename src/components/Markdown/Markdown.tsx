@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from 'react';
-
-import markdownToHtml from '@helpers/markdownToHtml';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 type Props = {
-    content: string;
-    className?: string;
+	content: string;
+	className?: string;
 };
 
-const Markdown: React.FC<Props> = ({ className, content }: Props) => {
-	const [html, setHtml] = useState('');
-
-	useEffect(() => {
-		(async () => {
-			const rawHtml = await markdownToHtml(content);
-			setHtml(rawHtml);
-		})();
-	}, [content]);
-
-	return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />;
-};
+const Markdown: React.FC<Props> = ({ className, content }: Props) => <ReactMarkdown className={className} remarkPlugins={[]}>{content}</ReactMarkdown>;
 
 export default Markdown;

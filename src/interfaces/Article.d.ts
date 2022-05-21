@@ -5,6 +5,7 @@ interface Article {
 	date: string;
 	author: string;
 	category: string[];
+	content: string;
     tags: string[];
 	excerpt?: string;
 	image?: string;

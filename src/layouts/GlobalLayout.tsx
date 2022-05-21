@@ -9,6 +9,7 @@ type Props = {
 	title: string;
 	withNav?: boolean;
 	children: React.ReactNode;
+	mainProps?: JSX.IntrinsicElements['main'];
 };
 
 const GlobalLayout: React.FC<Props> = (props: Props) => (
@@ -21,9 +22,9 @@ const GlobalLayout: React.FC<Props> = (props: Props) => (
 
 		{/* {(props.withNav ?? true) && <Nav />} */}
 
-		<main>{props.children}</main>
+		<main {...props.mainProps}>{props.children}</main>
 
-		{/* <Footer /> */}
+		<Footer />
 	</>
 );
 
