@@ -10,16 +10,16 @@ const Index: React.FC = () => {
 
 	const TopSection = () => {
 		const HeroArticle = () => <div className=""></div>;
-	};	
+	};
 
 	return (
 		<>
-			<section className={cx(GenericBlock, 'mt-32')}>
+			<section className={cx(GenericBlock, 'mt-12 lg:px-0')}>
 				<div>
 					<HeroArticleCard article={articles[0]} />
 				</div>
 				<div className="md:grid md:grid-cols-3 md:gap-x-8">
-					{articles.map((a) => (
+					{[...articles, ...articles, ...articles].map((a) => (
 						<ArticleCard key={a.id ?? a.title} article={a} classNames="mt-8" />
 					))}
 				</div>

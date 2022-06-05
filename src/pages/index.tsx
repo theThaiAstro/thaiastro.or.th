@@ -5,7 +5,7 @@ import GlobalLayout from '@layouts/GlobalLayout';
 
 const Home: NextPage = () => {
 	return (
-		<GlobalLayout title="Index" withNav={false}>
+		<GlobalLayout title="Index">
 			<Index />
 		</GlobalLayout>
 	);

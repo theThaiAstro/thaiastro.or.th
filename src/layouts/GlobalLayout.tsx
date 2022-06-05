@@ -20,7 +20,11 @@ const GlobalLayout: React.FC<Props> = (props: Props) => (
 			<link rel="icon" href="/favicon.ico" />
 		</Head>
 
-		{/* {(props.withNav ?? true) && <Nav />} */}
+		<div className="fixed top-0 left-0 z-50 flex h-16 w-16 items-center justify-center bg-red-500 text-2xl sm:bg-pink-500 md:bg-blue-500 lg:bg-purple-500 xl:bg-green-500">
+			🐞
+		</div>
+
+		{(props.withNav ?? true) && <Nav />}
 
 		<main {...props.mainProps}>{props.children}</main>
 
