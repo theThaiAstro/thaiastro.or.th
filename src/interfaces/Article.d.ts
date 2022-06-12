@@ -1,3 +1,5 @@
+import Thumbnail from './Thumbnail';
+
 interface Article {
 	id: number;
 	slug: string;
@@ -6,7 +8,7 @@ interface Article {
 	author: string;
 	category: string[];
 	content: string;
-    tags: string[];
+	tags: string[];
 	excerpt?: string;
-	image?: string;
+	thumbnail?: Thumbnail;
 }

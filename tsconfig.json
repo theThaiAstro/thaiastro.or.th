@@ -23,7 +23,7 @@
 			"@helpers/*": ["src/helpers/*"],
 			"@interfaces/*": ["src/interfaces/*"],
 			"@layouts/*": ["src/layouts/*"],
-			"@lib/*": ["src/libs/*"],
+			"@libs/*": ["src/libs/*"],
 			"@styles/*": ["src/styles/*"]
 		}
 	},
