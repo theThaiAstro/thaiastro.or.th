@@ -1,10 +1,10 @@
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
-		extend: {
-			// TODO: Move font names out here
-			// TODO: Use Anuphan instead of IBM Plex Sans
+		fontFamily: {
+			display: ['Anuphan', '"IBM Plex Sans Thai"', '"Noto Sans Thai UI"', '"Noto Sans Thai"', '"Noto Sans"', 'Helvetica', 'Arial', 'sans-serif'],
 		},
+		extend: {},
 	},
 	plugins: [],
 };

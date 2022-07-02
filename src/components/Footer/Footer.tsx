@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 	const currentYear = new Date().getFullYear() + 543;
 
 	return (
-		<footer className={cx('mt-24 pt-24 pb-32', 'bg-slate-900', "font-['IBM_Plex_Sans_Thai']")}>
+		<footer className={cx('mt-24 pt-24 pb-32', 'bg-slate-900', "font-display")}>
 			<div className={cx(GenericBlock, 'max-w-[113ch]')}>
 				<div className="relative -ml-3 h-24 w-24">
 					<Image src={TasLogo} alt="TAS Logo" className="w-full" layout="fill" objectFit="contain" />

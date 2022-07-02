@@ -6,12 +6,12 @@ export default interface Article {
 	id: number;
 	slug: string;
 	title: string;
-	date: string;
 	author: Author;
 	categories: string[];
 	content: string;
 	tags: string[];
+	postType: Omit<PostType, 'id'>;
+	dateCreated?: string;
 	excerpt?: string;
 	thumbnail?: Thumbnail;
-	postType: Omit<PostType, 'id'>;
 }

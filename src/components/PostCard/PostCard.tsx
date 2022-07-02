@@ -31,7 +31,7 @@ const PostCard: React.FC<Props> = (props: Props) => (
 			</div>
 		</div>
 		<div className="mt-6">
-			<Heading className="font-['IBM_Plex_Sans_Thai'] text-3xl font-semibold">{props.post.title}</Heading>
+			<Heading className="font-display text-3xl font-semibold">{props.post.title}</Heading>
 			<div className={cx('mt-2 overflow-hidden')}>{trimSentence(props.post.excerpt ?? props.post.content, true)}</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@ export const HeroPostCard: React.FC<Props> = (props: Props) => (
 			<Image alt={props.post.title} src={getAsset(props.post.thumbnail?.id)} layout="fill" objectFit="cover" unoptimized={true} />
 		</div>
 		<div className={cx('mt-6', 'flex-grow md:mt-0 md:ml-8')}>
-			<Heading className="font-['IBM_Plex_Sans_Thai'] text-3xl font-semibold md:text-4xl md:leading-[3rem]">{props.post.title}</Heading>
+			<Heading className="font-display text-3xl font-semibold md:text-4xl md:leading-[3rem]">{props.post.title}</Heading>
 			<div className={cx('', 'mt-2 overflow-hidden', 'md:mt-4')}>{trimSentence(props.post.excerpt ?? props.post.content, true)}</div>
 		</div>
 	</div>

@@ -17,6 +17,7 @@
 		"incremental": true,
 		"paths": {
 			"@assets/*": ["src/assets/*"],
+			"@apis/*": ["src/apis/*"],
 			"@components/*": ["src/components/*"],
 			"@constants/*": ["src/constants/*"],
 			"@data/*": ["src/data/*"],
