@@ -18,7 +18,7 @@ import styles from './index.module.scss';
 type Props = { article: Article };
 
 const getAuthorName = (author: Article['author']) => {
-	const names = [author.first_name, author.last_name].filter(_ => !!_).join(' ');
+	const names = [author?.first_name, author?.last_name].filter(_ => !!_).join(' ');
 	return names.length ? names : 'สมาคมดาราศาสตร์ไทย';
 };
 

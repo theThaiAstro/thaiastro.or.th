@@ -3,9 +3,9 @@ import cx from 'classnames';
 
 import Image from '@components/Image/Image';
 import Markdown from '@components/Markdown/Markdown';
-import { ArticleBlock } from '@constants/classNames';
 import { mockArticles } from '@data/mockData';
 import GlobalLayout from '@layouts/GlobalLayout';
+import Article from '@interfaces/Article';
 
 import CoverImage from './coverImage.jpg';
 
