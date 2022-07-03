@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 	const currentYear = new Date().getFullYear() + 543;
 
 	return (
-		<footer className={cx('mt-24 pt-24 pb-32', 'bg-slate-900', "font-display")}>
+		<footer className={cx('mt-24 pt-24 pb-32', 'bg-tas-700', "font-display")}>
 			<div className={cx(GenericBlock, 'max-w-[113ch]')}>
 				<div className="relative -ml-3 h-24 w-24">
 					<Image src={TasLogo} alt="TAS Logo" className="w-full" layout="fill" objectFit="contain" />
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 					<FontAwesomeIcon icon={faCreativeCommonsBy} className="mr-2 h-6" />
 					<FontAwesomeIcon icon={faCreativeCommonsSa} className="mr-2 h-6" />
 				</div> */}
-				<div className="text-slate-400">
+				<div className="text-slate-300">
 					<Markdown className="font-semibold" content={`©&nbsp;${currentYear} สมาคมดาราศาสตร์ไทย`} />
 					<Markdown
 						className="text-sm"

@@ -27,16 +27,27 @@ const NewsPage: NextPage<Props> = (props: Props) => {
 
 	if (!article) return null;
 
-	console.log(article);
+	const datePublished = new Date(article.dateCreated!);
+	const displayDate = new Intl.DateTimeFormat(['th-th', 'en-GB'], { dateStyle: 'medium' }).format(datePublished);
+	const fullDate = new Intl.DateTimeFormat(['en-GB'], { dateStyle: 'full', timeStyle: 'long' }).format(datePublished);
 
 	// TODO: Add tags
 	// const Tags = () => <ul>{article.tags.map(({ }))}</ul>;
 
+	const Separator = () => <>&nbsp;·&nbsp;</>;
+
 	const Categories = () => (
-		<ul className="mt-4 font-medium text-blue-900 hover:cursor-pointer">
-			{article.categories.map((c, i, arr) => (
-				<li className={cx(i !== arr.length - 1 && 'after:content-[","]', 'mr-2 inline', 'hover:underline hover:decoration-blue-900 hover:decoration-dotted')} key={c}>
-					{c}
+		<ul className="mt-4 font-medium text-blue-500 hover:cursor-pointer">
+			{article.categories.map((category, i, arr) => (
+				<li
+					className={cx(
+						i !== arr.length - 1 && 'after:content-[","]',
+						'mr-2 inline',
+						'hover:underline hover:decoration-blue-500 hover:decoration-dotted'
+					)}
+					key={category}
+				>
+					{category}
 				</li>
 			))}
 		</ul>
@@ -44,12 +55,10 @@ const NewsPage: NextPage<Props> = (props: Props) => {
 
 	const Time = () => (
 		<>
-			<time dateTime={article.dateCreated}>
-				{new Intl.DateTimeFormat(['th-th', 'en-GB'], {
-					dateStyle: 'medium',
-				}).format(new Date(article.dateCreated!))}
+			<time dateTime={article.dateCreated} title={fullDate}>
+				{displayDate}
 			</time>
-			&nbsp;·&nbsp;
+			<Separator />
 		</>
 	);
 
@@ -67,19 +76,24 @@ const NewsPage: NextPage<Props> = (props: Props) => {
 		</section>
 	);
 
+	const CoverImage = () => (
+		<div
+			className={cx(
+				'relative mt-8',
+				'aspect-[1618/1000]',
+				'left-[calc(-50vw_+_50%)] w-screen max-w-[100vw]',
+				'md:left-[calc(-54ch_+_50%)] md:w-[108ch] md:max-w-[108ch]'
+			)}
+		>
+			<Image alt={article.title} src={getAsset(article.thumbnail?.id)} layout="fill" objectFit="contain" unoptimized={true} />
+		</div>
+	);
+
 	const Article = () => (
-		<article className="mx-auto overflow-x-hidden">
-			<div
-				className={cx(
-					'relative h-[72vh]',
-					'left-[calc(-50vw_+_50%)] w-screen max-w-[100vw]',
-					'md:left-[calc(-54ch_+_50%)] md:w-[108ch] md:max-w-[108ch]'
-				)}
-			>
-				<Image alt={article.title} src={getAsset(article.thumbnail?.id)} layout="fill" objectFit="cover" unoptimized={true} />
-			</div>
-			<section className={cx('relative mx-auto box-content max-w-[72ch] bg-white', 'px-4 py-16', 'md:-mt-16 md:px-16')}>
+		<article className="mx-auto overflow-x-hidden md:mt-4">
+			<section className={cx('relative mx-auto box-content max-w-[72ch] bg-white', 'px-4 py-16')}>
 				<MetaData />
+				<CoverImage />
 				<Markdown content={article.content} className={cx('pt-4', styles.Article__Content)} />
 			</section>
 		</article>
