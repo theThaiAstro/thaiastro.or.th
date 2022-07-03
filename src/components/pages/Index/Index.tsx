@@ -15,7 +15,7 @@ const Index: React.FC = () => {
 		})();
 	}, []);
 
-	const HeroArticle = () => <div>{articles.length && <LinkedHeroPostCard post={articles[0]} />}</div>;
+	const HeroArticle = () => <div>{!!articles.length && <LinkedHeroPostCard post={articles[0]} />}</div>;
 
 	return (
 		<>
