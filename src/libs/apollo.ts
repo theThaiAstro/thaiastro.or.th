@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { baseUrl } from "@constants/urls";
 
 const client = new ApolloClient({
-    // uri: "https://countries.trevorblades.com",
-    uri: "http://13.215.229.253:8055/graphql",
+    uri: `${baseUrl}/graphql`,
     cache: new InMemoryCache(),
 });
 
