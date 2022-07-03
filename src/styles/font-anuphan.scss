@@ -1,43 +1,41 @@
-@import 'typography';
-
 @font-face {
+	font-weight: 100;
 	font-family: Anuphan;
-	font-weight: $thin;
 	src: url('../assets/fonts/Anuphan/Anuphan-Thin.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 200;
 	font-family: Anuphan;
-	font-weight: $extraLight;
 	src: url('../assets/fonts/Anuphan/Anuphan-ExtraLight.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 300;
 	font-family: Anuphan;
-	font-weight: $light;
 	src: url('../assets/fonts/Anuphan/Anuphan-Light.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 400;
 	font-family: Anuphan;
-	font-weight: $normal;
 	src: url('../assets/fonts/Anuphan/Anuphan-Regular.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 500;
 	font-family: Anuphan;
-	font-weight: $medium;
 	src: url('../assets/fonts/Anuphan/Anuphan-Medium.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 600;
 	font-family: Anuphan;
-	font-weight: $semiBold;
 	src: url('../assets/fonts/Anuphan/Anuphan-SemiBold.otf') format('opentype');
 }
 
 @font-face {
+	font-weight: 700;
 	font-family: Anuphan;
-	font-weight: $bold;
 	src: url('../assets/fonts/Anuphan/Anuphan-Bold.otf') format('opentype');
 }
