@@ -14,6 +14,8 @@ const List: React.FC<Props> = (props: Props) => {
 
 	// const HeroArticle = () => <div>{!!articles.length && <LinkedHeroPostCard post={articles[0]} />}</div>;
 
+	if (!articles?.length) return null;
+
 	return (
 		<>
 			<section className={cx(GenericBlock, 'mt-12 lg:px-0')}>

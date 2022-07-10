@@ -14,7 +14,7 @@ type Props = { articles: Article[] };
 const Index: NextPage<Props> = (props: Props) => {
 	return (
 		<GlobalLayout title="hahah">
-			<List articles={props.articles} />
+			<List articles={props.articles ?? []} />
 		</GlobalLayout>
 	);
 };
