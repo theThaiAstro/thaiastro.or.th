@@ -6,7 +6,7 @@ console.log(`Making requests to ${baseUrl}`);
 const isDebug = process.env.NODE_ENV === 'development';
 
 async function loggingFetch(input: RequestInfo, init?: RequestInit): Promise<Response> {
-	const body = JSON.parse(init?.body ?? '{}');
+	const body = JSON.parse(init?.body as string ?? '{}');
 
 	console.log(init, input);
 
