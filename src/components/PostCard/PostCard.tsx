@@ -5,11 +5,13 @@ import Image from '@components/Image/Image';
 import trimSentence from '@helpers/sentenceTrimmer';
 import Article from '@interfaces/Article';
 import getAsset from '@helpers/getAsset';
-import Link from 'next/link';
+import Link from '@components/Link/Link';
+import getLink from '@helpers/getLink';
 
 type Props = {
 	post: Article;
 	classNames?: string;
+	linkClassNames?: string;
 	hLevel?: 'h2' | 'h3';
 };
 
@@ -49,34 +51,16 @@ export const HeroPostCard: React.FC<Props> = (props: Props) => (
 	</div>
 );
 
-type GenericLinkedProps = { postTypeSlug: string; postSlug: string; children: React.ReactNode; href?: string; onClick?: () => void };
-const GenericLinkedPost = (props: GenericLinkedProps, displayName: string) => {
-	const getLink = () => `/${props.postTypeSlug}/${encodeURIComponent(props.postSlug)}`;
-
-	const Component = React.forwardRef<HTMLAnchorElement, GenericLinkedProps>((p, ref) => (
-		<a href={p.href} onClick={p.onClick} ref={ref}>
-			{p.children}
-		</a>
-	));
-	Component.displayName = `Anchored(${displayName})`;
-
-	return (
-		<Link href={getLink()} passHref>
-			<Component {...props} />
-		</Link>
-	);
-};
-
 export const LinkedHeroPostCard = (props: Props) => (
-	<GenericLinkedPost postSlug={props.post.slug} postTypeSlug={props.post.postType.slug}>
+	<Link link={getLink(props.post.postType.slug, props.post.slug)} classNames={props.linkClassNames}>
 		<HeroPostCard {...props} />
-	</GenericLinkedPost>
+	</Link>
 );
 
 export const LinkedPostCard = (props: Props) => (
-	<GenericLinkedPost postSlug={props.post.slug} postTypeSlug={props.post.postType.slug}>
+	<Link link={getLink(props.post.postType.slug, props.post.slug)} classNames={props.linkClassNames}>
 		<PostCard {...props} />
-	</GenericLinkedPost>
+	</Link>
 );
 
 export default PostCard;

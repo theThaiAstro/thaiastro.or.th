@@ -19,7 +19,7 @@ const mapPostsResponseToArticle = (post: PostsResponse): Article => ({
 	content: post.content,
 	author: post.author,
 	thumbnail: post.thumbnail,
-	categories: post.categories.map(c => c.categories_id.name_th),
+	categories: post.categories.map(c => c.categories_id),
 	dateCreated: post.date_created,
 	slug: post.slug,
 	tags: [],

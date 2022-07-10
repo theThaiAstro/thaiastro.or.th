@@ -1,4 +1,5 @@
 import Author from './Author';
+import Categrory from './Category';
 import PostType from './PostType';
 import Thumbnail from './Thumbnail';
 
@@ -7,7 +8,7 @@ export default interface Article {
 	slug: string;
 	title: string;
 	author: Author;
-	categories: string[];
+	categories: Omit<Categrory, 'id'>[];
 	content: string;
 	tags: string[];
 	postType: Omit<PostType, 'id'>;

@@ -23,7 +23,7 @@ const Index: React.FC = () => {
 				<HeroArticle />
 				<div className="md:grid md:grid-cols-3 md:gap-x-8">
 					{[...articles, ...articles, ...articles, ...articles, ...articles].map(
-						(a, i) => a && <LinkedPostCard key={`${a.id}-${i}`} post={a} classNames="mt-8" />
+						(a, i) => a && <LinkedPostCard key={`${a.id}-${i}`} post={a} linkClassNames="mt-8" />
 					)}
 				</div>
 			</section>
