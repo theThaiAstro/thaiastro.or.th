@@ -11,9 +11,11 @@ import GlobalLayout from '@layouts/GlobalLayout';
 import client from '@libs/apollo';
 
 import Article from '@interfaces/Article';
-import { AllPostsForGetStaticPaths, PostForGetStaticPaths } from './getStaticPaths.d';
+import { AllPostsForGetStaticPaths } from '../../interfaces/getStaticPaths';
 
 import styles from './index.module.scss';
+import Link from '@components/Link/Link';
+import getLink, { getCategoryLink } from '@helpers/getLink';
 
 type Props = { article: Article };
 
@@ -22,7 +24,7 @@ const getAuthorName = (author: Article['author']) => {
 	return names.length ? names : 'สมาคมดาราศาสตร์ไทย';
 };
 
-const NewsPage: NextPage<Props> = (props: Props) => {
+const ContentPage: NextPage<Props> = (props: Props) => {
 	const { article } = props;
 
 	if (!article) return null;
@@ -45,9 +47,9 @@ const NewsPage: NextPage<Props> = (props: Props) => {
 						'mr-2 inline',
 						'hover:underline hover:decoration-blue-500 hover:decoration-dotted'
 					)}
-					key={category}
+					key={category.slug}
 				>
-					{category}
+					<Link link={getCategoryLink(category.slug)}>{category.name_th}</Link>
 				</li>
 			))}
 		</ul>
@@ -64,9 +66,15 @@ const NewsPage: NextPage<Props> = (props: Props) => {
 
 	const Author = () => <address className="inline not-italic">{getAuthorName(article.author)}</address>;
 
+	const PostTypeBadge = () => (
+		<Link link={getLink(props.article.postType.slug)}>
+			<Badge text={article.postType.name_th} />
+		</Link>
+	);
+
 	const MetaData = () => (
 		<section className="font-display">
-			<Badge text={article.postType.name_th} />
+			<PostTypeBadge />
 			<Categories />
 			<h1 className="mt-6 text-4xl font-semibold">{article.title}</h1>
 			<div className="mt-4 text-base font-light">
@@ -146,4 +154,4 @@ export const getStaticProps: GetStaticProps<Props, ReturnedGetStaticPath> = asyn
 	};
 };
 
-export default NewsPage;
+export default ContentPage;

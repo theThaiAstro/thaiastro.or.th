@@ -42,39 +42,57 @@ export const getAllPosts = async () => {
 	return data.posts.map(mapPostsResponseToArticle);
 };
 
-export const getPostBySlug = async (slug: string) => {
-	const { data } = await client.query<Response>({
-		query: gql`
-			query PostBySlug {
-				posts (filter: { slug: { _eq: "${slug}" } }) {
-					id
-					slug
-					title
-					content
-					date_created
-					thumbnail {
+export const getPostsByFilter = async (filter: string, queryName?: string) => {
+	const query = queryName ?? 'PostsByFilter';
+
+	try {
+		const res = await client.query<Response>({
+			query: gql`
+				query ${query} {
+					posts (filter: ${filter}) {
 						id
-					}
-					post_type {
 						slug
-						name
-						name_th
-					}
-					categories {
-						categories_id {
+						title
+						content
+						date_created
+						thumbnail {
+							id
+						}
+						post_type {
+							slug
+							name
 							name_th
 						}
-					}
-					author {
-						title
-						first_name
-						last_name
-						description
+						categories {
+							categories_id {
+								name_th
+								name
+								slug
+							}
+						}
+						author {
+							title
+							first_name
+							last_name
+							description
+						}
 					}
 				}
-			}
-		`,
-	});
+			`,
+		});
 
-	return data.posts.map(mapPostsResponseToArticle).at(0);
+		return (res.data.posts).map(mapPostsResponseToArticle);
+	} catch (e) {
+		console.log(`[postApi::getPostsByFilter] Filter: ${filter}`);
+		console.error(e);
+		return [];
+	}
 };
+
+export const getPostBySlug = async (slug: string) => (await getPostsByFilter(`{ slug: { _eq: "${slug}" } }`, 'PostBySlug')).at(0);
+
+export const getPostsByPostType = async (postTypeSlug: string) =>
+	await getPostsByFilter(`{ post_type: { slug: { _eq: "${postTypeSlug}" } } }`, 'PostsByPostType');
+
+export const getPostsByCategory = async (categorySlug: string) =>
+	await getPostsByFilter(`{ categories: { categories_id: { slug: { _eq: "${categorySlug}" } } } }`, 'PostsByCategory');
