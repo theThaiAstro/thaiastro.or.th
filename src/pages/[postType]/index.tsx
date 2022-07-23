@@ -9,12 +9,14 @@ import client from '@libs/apollo';
 import { AllPostTypesForGetStaticPaths } from '../../interfaces/getStaticPaths';
 import List from '@components/pages/List/List';
 
-type Props = { articles: Article[] };
+type Props = { articles: Article[]; postType: string };
 
 const Index: NextPage<Props> = (props: Props) => {
+	const title = props.articles?.at(0)?.postType.name_th;
+
 	return (
-		<GlobalLayout title="hahah">
-			<List articles={props.articles} />
+		<GlobalLayout title={title}>
+			<List articles={props.articles} title={title} />
 		</GlobalLayout>
 	);
 };
@@ -57,6 +59,7 @@ export const getStaticProps: GetStaticProps<Props, ReturnedGetStaticPath> = asyn
 	return {
 		props: {
 			articles,
+			postType,
 		},
 	};
 };
