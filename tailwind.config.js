@@ -6,6 +6,15 @@ module.exports = {
 		},
 		extend: {
 			colors: {
+				brand: {
+					Facebook: '#1877f2',
+					Line: '#06c755',
+					Messenger: '#0a7cff',
+					'Messenger--Gradient': 'linear-gradient(45deg, #0a7cff 0%, #a10eeb 60%, #ff5297 93%, #ff6c5c 100%)',
+					Twitter: '#1d9bf0',
+					WhatsApp: '#25d366',
+					Link: '#001980',
+				},
 				grey: {
 					100: '#e5e5e6',
 					200: '#cccccc',
