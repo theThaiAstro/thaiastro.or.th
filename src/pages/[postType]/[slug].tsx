@@ -16,6 +16,7 @@ import { AllPostsForGetStaticPaths } from '../../interfaces/getStaticPaths';
 import styles from './index.module.scss';
 import Link from '@components/Link/Link';
 import getLink, { getCategoryLink } from '@helpers/getLink';
+import ShareButtons from '@components/ShareButtons/ShareButtons';
 
 type Props = { article: Article };
 
@@ -76,11 +77,12 @@ const ContentPage: NextPage<Props> = (props: Props) => {
 		<section className="font-display">
 			<PostTypeBadge />
 			<Categories />
-			<h1 className="mt-6 text-4xl font-semibold">{article.title}</h1>
+			<h1 className="mt-8 text-4xl font-semibold">{article.title}</h1>
 			<div className="mt-4 text-base font-light">
 				{article.dateCreated && <Time />}
 				โดย <Author />
 			</div>
+			<ShareButtons text='text' url='sfdsdf' className='mt-4' />
 		</section>
 	);
 

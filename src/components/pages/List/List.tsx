@@ -26,7 +26,7 @@ const List: React.FC<Props> = (props: Props) => {
 
 				<div className="mt-8 md:grid md:grid-cols-3 md:gap-x-8">
 					{[...articles, ...articles, ...articles, ...articles, ...articles].map(
-						(a, i) => a && <LinkedPostCard key={`${a.id}-${i}`} post={a} linkClassNames="mt-8" />
+						(a, i) => a && <LinkedPostCard key={`${a.id}-${i}`} post={a} linkClassNames="mt-8" classNames='hover:scale-[1.0625] transition ease-out' />
 					)}
 				</div>
 			</section>
